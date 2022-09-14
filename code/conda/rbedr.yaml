@@ -1,0 +1,5 @@
+channel:
+  - conda-forge
+
+depedencies:
+  - r-bedr=1.0.7
