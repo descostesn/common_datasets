@@ -28,6 +28,6 @@ rule sort_format_blacklist:
   output:
     "../{species}/{genome}/blacklist/{genomeBiomart}-encodeblacklist-sorted.bed"
   threads: 1
-  conda: "conda/genomicranges.yaml"
+  conda: "../../conda/genomicranges.yaml"
   script:
     "../../scripts/sort_format_blacklist.R"

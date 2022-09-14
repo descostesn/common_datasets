@@ -5,7 +5,7 @@ rule create_whiteLists:
   output:
     "../{species}/{genome}/whitelist/{genomeBiomart}-encodewhitelist-sorted.bed"
   threads: 1
-  conda: "conda/genomicranges.yaml"
+  conda: "../../conda/genomicranges.yaml"
   params:
     outputFolder= lambda wildcards: f"../{wildcards.species}/{wildcards.genome}/whitelist"
   script:
