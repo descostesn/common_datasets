@@ -4,7 +4,7 @@ rule unique_tss:
   output:
     "../{species}/{genome}/uniqeTSS_bed/{prefixExt}_TSSunique.bed"
   threads: 1
-  container: "singularities/bedr-v107.sif"
+  conda: "conda/rbedr.yaml"
   params:
     outputFolder = "../{species}/{genome}/uniqeTSS_bed"
   script:
