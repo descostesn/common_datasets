@@ -43,7 +43,7 @@ for genome in GENOMEID:
   PREFIXESEXT.append(config["prefixesExtended"][genome])
 
 # Build the table of test datasets to download
-!!!!!!!!!!!
+#!!!!!!!!!!!
 
 
 ############
