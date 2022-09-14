@@ -2,7 +2,7 @@ rule downloadChromInfo:
   output:
     "../{species}/{genome}/chromInfo/{genomeBiomart}-chromInfo.txt"
   threads: 1
-  container: "singularities/genomeinfodb-v1323.sif"
+  conda: "conda/genomeinfodb.yaml"
   params:
     release = lambda wildcards: config["prefixesExtended"][wildcards.genome],
     excludeChrom = lambda wildcards: config["excludeChrom"][wildcards.genome]
