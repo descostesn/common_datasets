@@ -8,7 +8,7 @@ rule build_bowtie_index:
     "../{species}/{genome}/bowtie2_index/{prefix}.4.bt2",
     "../{species}/{genome}/bowtie2_index/{prefix}.rev.1.bt2",
     "../{species}/{genome}/bowtie2_index/{prefix}.rev.2.bt2"
-  singularity: "singularities/bowtie2v245.sif"
+  conda: "conda/bowtie2.yaml"
   threads: 8
   params:
     outputFolder= lambda wildcards: f"../{wildcards.species}/{wildcards.genome}/bowtie2_index"
