@@ -1,0 +1,73 @@
+genomeList: ["mm10", "mm39", "hg38"]
+genomeBiomart: ["GRCm38", "GRCm39", "GRCh38"]
+
+prefixes:
+  mm10: "Mus_musculus.GRCm38"
+  mm39: "Mus_musculus.GRCm39"
+  hg38: "Homo_sapiens.GRCh38"
+
+prefixesExtended:
+  mm10: "Mus_musculus.GRCm38.102"
+  mm39: "Mus_musculus.GRCm39.107"
+  hg38: "Homo_sapiens.GRCh38.107"
+
+species:
+  mm10: "Mus_musculus"
+  mm39: "Mus_musculus"
+  hg38: "Homo_sapiens"
+
+fasta:
+  mm10: "http://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.chromosome.1.fa.gz"
+  mm39: "http://ftp.ensembl.org/pub/release-107/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.chromosome.1.fa.gz"
+  hg38: "http://ftp.ensembl.org/pub/release-107/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.1.fa.gz"
+
+gtf:
+  mm10: "http://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.chr.gtf.gz"
+  mm39: "http://ftp.ensembl.org/pub/release-107/gtf/mus_musculus/Mus_musculus.GRCm39.107.chr.gtf.gz"
+  hg38: "http://ftp.ensembl.org/pub/release-107/gtf/homo_sapiens/Homo_sapiens.GRCh38.107.chr.gtf.gz"
+
+gff:
+  mm10: "http://ftp.ensembl.org/pub/release-102/gff3/mus_musculus/Mus_musculus.GRCm38.102.chr.gff3.gz"
+  mm39: "http://ftp.ensembl.org/pub/release-107/gff3/mus_musculus/Mus_musculus.GRCm39.107.chr.gff3.gz"
+  hg38: "http://ftp.ensembl.org/pub/release-107/gff3/homo_sapiens/Homo_sapiens.GRCh38.107.chr.gff3.gz"
+
+blacklists:
+  mm10: "https://github.com/Boyle-Lab/Blacklist/raw/master/lists/mm10-blacklist.v2.bed.gz"
+  mm39: "https://github.com/Boyle-Lab/Blacklist/files/7476805/mm10-blacklist.v2.Liftover.mm39.bed.txt"
+  hg38: "https://github.com/Boyle-Lab/Blacklist/raw/master/lists/hg38-blacklist.v2.bed.gz"
+
+excludeChrom:
+  mm10: "MT"
+  mm39: "MT"
+  hg38: "MT"
+
+testDatasets:
+  technique: ["RNASeq", "ChIPSeq", "ATACSeq"]
+  organism: ["mouse", "human"]
+  RNASeq:
+    mouse:
+      singleEnded: "https://www.encodeproject.org/files/ENCFF678XFK/@@download/ENCFF678XFK.fastq.gz"
+      pairedEnded1: "https://www.encodeproject.org/files/ENCFF817RHL/@@download/ENCFF817RHL.fastq.gz"
+      pairedEnded2: "https://www.encodeproject.org/files/ENCFF533VQX/@@download/ENCFF533VQX.fastq.gz"
+    human:
+      singleEnded: "https://www.encodeproject.org/files/ENCFF729YAX/@@download/ENCFF729YAX.fastq.gz"
+      pairedEnded1: "https://www.encodeproject.org/files/ENCFF028DUO/@@download/ENCFF028DUO.fastq.gz"
+      pairedEnded2: "https://www.encodeproject.org/files/ENCFF470RWW/@@download/ENCFF470RWW.fastq.gz"
+  ChIPSeq:
+    mouse:
+      singleEnded: "https://www.encodeproject.org/files/ENCFF937IMG/@@download/ENCFF937IMG.fastq.gz"
+      pairedEnded1: "https://www.encodeproject.org/files/ENCFF090PQE/@@download/ENCFF090PQE.fastq.gz"
+      pairedEnded2: "https://www.encodeproject.org/files/ENCFF362BSH/@@download/ENCFF362BSH.fastq.gz"
+    human:
+      singleEnded: "https://www.encodeproject.org/files/ENCFF354RIC/@@download/ENCFF354RIC.fastq.gz"
+      pairedEnded1: "https://www.encodeproject.org/files/ENCFF825HMN/@@download/ENCFF825HMN.fastq.gz"
+      pairedEnded2: "https://www.encodeproject.org/files/ENCFF240ZBS/@@download/ENCFF240ZBS.fastq.gz"
+  ATACSeq:
+    mouse:
+      singleEnded: "https://www.encodeproject.org/files/ENCFF535AXY/@@download/ENCFF535AXY.fastq.gz"
+      pairedEnded1: "https://www.encodeproject.org/files/ENCFF600AUS/@@download/ENCFF600AUS.fastq.gz"
+      pairedEnded2: "https://www.encodeproject.org/files/ENCFF273QXE/@@download/ENCFF273QXE.fastq.gz"
+    human:
+      singleEnded: "https://www.encodeproject.org/files/ENCFF022FVS/@@download/ENCFF022FVS.fastq.gz"
+      pairedEnded1: "https://www.encodeproject.org/files/ENCFF526FOQ/@@download/ENCFF526FOQ.fastq.gz"
+      pairedEnded2: "https://www.encodeproject.org/files/ENCFF310QJA/@@download/ENCFF310QJA.fastq.gz"

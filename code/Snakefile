@@ -1,0 +1,78 @@
+##############
+# This snakefile downloads reference datasets and annotations for different genomes.
+# Descostes Sept 2022
+# Snakemake 7.14.0
+##############
+
+
+
+configfile: "config.yaml"
+
+
+###############################################################################
+# on Start
+###############################################################################
+
+onstart:
+    print("##### REFERENCE DATASETS #####\n") 
+    print("\t Creating jobs output subfolders...\n")
+    shell("mkdir -p jobs/download_genome")
+    shell("mkdir -p jobs/download_gtf")
+    shell("mkdir -p jobs/download_gff")
+    shell("mkdir -p jobs/build_bowtie_index")
+    shell("mkdir -p jobs/downloadChromInfo")
+    shell("mkdir -p jobs/download_blacklists")
+    shell("mkdir -p jobs/sort_format_blacklist")
+    shell("mkdir -p jobs/unique_tss")
+    shell("mkdir -p jobs/create_whiteLists")
+
+
+###############################################################################
+# Variables definition
+###############################################################################
+
+GENOMEID=config["genomeList"]
+GENOMEBIOMART=config["genomeBiomart"]
+
+PREFIXES=[]
+PREFIXESEXT=[]
+SPECIES=[]
+for genome in GENOMEID:
+  PREFIXES.append(config["prefixes"][genome])
+  SPECIES.append(config["species"][genome])
+  PREFIXESEXT.append(config["prefixesExtended"][genome])
+
+# Build the table of test datasets to download
+!!!!!!!!!!!
+
+
+############
+# Rule all
+############
+
+rule all:
+  input:
+    expand("../{species}/{genome}/fasta/{prefix}.dna.chromosome.fa", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
+    expand("../{species}/{genome}/gtf/{prefixExt}.chr.gtf", zip, species=SPECIES, genome=GENOMEID, prefixExt=PREFIXESEXT),
+    expand("../{species}/{genome}/gff/{prefixExt}.chr.gff3", zip, species=SPECIES, genome=GENOMEID, prefixExt=PREFIXESEXT),
+    expand("../{species}/{genome}/bowtie2_index/{prefix}.1.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
+    expand("../{species}/{genome}/bowtie2_index/{prefix}.2.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
+    expand("../{species}/{genome}/bowtie2_index/{prefix}.3.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
+    expand("../{species}/{genome}/bowtie2_index/{prefix}.4.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
+    expand("../{species}/{genome}/bowtie2_index/{prefix}.rev.1.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
+    expand("../{species}/{genome}/bowtie2_index/{prefix}.rev.2.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
+    expand("../{species}/{genome}/chromInfo/{genomeBiomart}-chromInfo.txt", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
+    expand("../{species}/{genome}/blacklist/{genomeBiomart}-encodeblacklist.txt", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
+    expand("../{species}/{genome}/blacklist/{genomeBiomart}-encodeblacklist-sorted.bed", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
+    expand("../{species}/{genome}/uniqeTSS_bed/{prefixExt}_TSSunique.bed", zip, species=SPECIES, genome=GENOMEID, prefixExt=PREFIXESEXT),
+    expand("../{species}/{genome}/whitelist/{genomeBiomart}-encodewhitelist-sorted.bed", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART)
+
+
+include: "external_rules/downloadFiles/downloadFasta.smk"
+include: "external_rules/downloadFiles/downloadGTF.smk"
+include: "external_rules/downloadFiles/downloadGFF.smk"
+include: "external_rules/bowtie2/indexBowtie2.smk"
+include: "external_rules/downloadFiles/chromInfo.smk"
+include: "external_rules/downloadFiles/blacklists.smk"
+include: "external_rules/TSS/ensemblTSS_unique_sorted.smk"
+include: "external_rules/whiteLists/whiteLists.smk"
