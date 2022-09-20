@@ -1,5 +1,6 @@
 name: learn-github-actions
 on: [push]
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
@@ -8,5 +9,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+      - name: installation
+        run: npm install -g bats
+      - name: displayVesion
+        run: bats -v
+
+jobs:
+  helloscript-job:
+    steps:
+      - name: Run hello script
+        run: ./.github/scripts/hello.sh
+        shell: bash
