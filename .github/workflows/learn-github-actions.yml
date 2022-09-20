@@ -13,8 +13,6 @@ jobs:
         run: npm install -g bats
       - name: displayVesion
         run: bats -v
-
-jobs:
   helloscript-job:
     steps:
       - name: Run hello script
