@@ -14,6 +14,7 @@ jobs:
       - name: displayVesion
         run: bats -v
   helloscript-job:
+    needs: check-bats-version-job
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
