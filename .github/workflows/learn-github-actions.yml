@@ -7,7 +7,7 @@ env:
 jobs:
   check-bats-version-job:
     runs-on: ubuntu-latest
-    if: ${{ myBoolean }}
+    if: myBoolean
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
