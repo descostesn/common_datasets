@@ -2,7 +2,7 @@ name: learn-github-actions2
 on:
   push:
     paths:
-      - '*DOCKERFILE'
+      - 'code/Dockerfile'
 
 jobs:
   hello-job:
