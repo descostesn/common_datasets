@@ -3,6 +3,11 @@ on:
   push:
     paths:
       - 'code/Dockerfile'
+# Trigger the workflow when another one has completed
+#   workflow_run:
+#    workflows: [learn-github-actions]
+#    types:
+#      - completed
 
 jobs:
   hello-job:
