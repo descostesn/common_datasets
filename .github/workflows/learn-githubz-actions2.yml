@@ -1,5 +1,8 @@
 name: learn-github-actions2
-on: [push]
+on:
+  push:
+    paths:
+      - '*DOCKERFILE'
 
 jobs:
   hello-job:
