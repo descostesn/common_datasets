@@ -55,3 +55,4 @@ RUN mamba env create --prefix /conda-envs/037018897d6807deba33d27eb8b0eb32 --fil
     mamba env create --prefix /conda-envs/218dc1460db780f35e0c297cf26b6647 --file /conda-envs/218dc1460db780f35e0c297cf26b6647/environment.yaml && \
     mamba env create --prefix /conda-envs/47999721ff5516e76fc84b022d87dc86 --file /conda-envs/47999721ff5516e76fc84b022d87dc86/environment.yaml && \
     mamba clean --all -y
+
