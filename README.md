@@ -10,3 +10,4 @@ The structure of the folders corresponding to each genomes is:
 1) Species
 2) Genome
 3) fasta/gtf/gff/bowtie2_index
+
