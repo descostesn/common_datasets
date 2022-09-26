@@ -1,10 +1,11 @@
 name: Publish Docker image
 
-push:
-  paths:
-    - 'code/Dockerfile'
-  branches:
-    - main
+on:
+  push:
+    paths:
+      - 'code/Dockerfile'
+    branches:
+      - main
 
 jobs:
   docker:
