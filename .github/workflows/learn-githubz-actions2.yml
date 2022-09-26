@@ -3,6 +3,9 @@ on:
   push:
     paths:
       - 'code/Dockerfile'
+    branches-ignore:
+      - main
+  
 # Trigger the workflow when another one has completed
 #   workflow_run:
 #    workflows: [learn-github-actions]
