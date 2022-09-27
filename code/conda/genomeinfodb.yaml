@@ -1,6 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
 
 dependencies:
   - c-ares=1.18.1
