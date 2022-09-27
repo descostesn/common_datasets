@@ -4,7 +4,7 @@
 # Snakemake 7.14.0
 ##############
 
-# Run to generate the conda environment: snakemake --use-conda --cores=1
+# Run to generate the conda environment: snakemake --use-conda --conda-create-envs-only --cores 1
 # Build the docker file: snakemake --containerize > Dockerfile
 
 
