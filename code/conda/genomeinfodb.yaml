@@ -3,8 +3,10 @@ channels:
   - conda-forge
 
 dependencies:
+  - c-ares=1.18.1
   - libnghttp2=1.47.0
   - libcurl=7.83.1
+  - libdeflate=1.14
   - libtiff=4.4.0
   - r-base=4.1.3
   - bioconductor-biocgenerics=0.40.0
