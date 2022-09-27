@@ -4,6 +4,6 @@ channels:
 
 dependencies:
   - libcurl=7.83.1
-  - r-base=4.2.1
+  - r-base=4.1.3
   - bioconductor-biocgenerics=0.40.0
   - bioconductor-genomeinfodb=1.30.0
