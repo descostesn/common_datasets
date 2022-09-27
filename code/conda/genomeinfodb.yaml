@@ -3,7 +3,9 @@ channels:
   - conda-forge
 
 dependencies:
+  - libnghttp2=1.47.0
   - libcurl=7.83.1
+  - libtiff=4.4.0
   - r-base=4.1.3
   - bioconductor-biocgenerics=0.40.0
   - bioconductor-genomeinfodb=1.30.0
