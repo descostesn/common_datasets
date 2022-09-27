@@ -3,4 +3,3 @@ channels:
 
 depedencies:
   - r-base=4.1.3
-  - r-bedr=1.0.7
