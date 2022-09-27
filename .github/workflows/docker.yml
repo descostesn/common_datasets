@@ -20,7 +20,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: emblromebioinfo/common_datasets
-          tags: type=semver,pattern={{version}},value=v0.1.0
+          tags: type=semver,pattern={{raw}},value=v0.0.1-alpha
       -
         name: Login to DockerHub
         if: github.event_name != 'pull_request'
