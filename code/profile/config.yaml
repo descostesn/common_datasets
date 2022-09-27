@@ -11,6 +11,10 @@ reason: True
 restart-times: 0
 show-failed-logs: True
 
+# conda option
+
+use-conda: True
+
 # Singularity option
 
 use-singularity: True
