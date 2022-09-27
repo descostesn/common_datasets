@@ -1,6 +1,6 @@
 FROM condaforge/mambaforge:latest
 LABEL io.github.snakemake.containerized="true"
-LABEL io.github.snakemake.conda_env_hash="d694311144a0f9d0c5059032e6023d4dc0822a1361523076511a449080d308b7"
+LABEL io.github.snakemake.conda_env_hash="ec70006584c7190c54c47ef0ef7b0078fee133823773eb548f83ddfd56817645"
 
 # Step 1: Retrieve conda environments
 
@@ -49,19 +49,19 @@ COPY conda/genomicranges.yaml /conda-envs/cd9d783d1fdbb0c00dbbfb75c50541ce/envir
 
 # Conda environment:
 #   source: conda/r.yaml
-#   prefix: /conda-envs/6a0511df5be481713e608ce9ccff6344
+#   prefix: /conda-envs/5eb02c7612b8d9986f89c786639b0740
 #   channels:
 #     - conda-forge
 #   
 #   depedencies:
-#     - r-base=4.1.3
-RUN mkdir -p /conda-envs/6a0511df5be481713e608ce9ccff6344
-COPY conda/r.yaml /conda-envs/6a0511df5be481713e608ce9ccff6344/environment.yaml
+#     - r-base=4.2.1
+RUN mkdir -p /conda-envs/5eb02c7612b8d9986f89c786639b0740
+COPY conda/r.yaml /conda-envs/5eb02c7612b8d9986f89c786639b0740/environment.yaml
 
 # Step 2: Generate conda environments
 
 RUN mamba env create --prefix /conda-envs/9396826f72d1825f10f2bda859604ce6 --file /conda-envs/9396826f72d1825f10f2bda859604ce6/environment.yaml && \
     mamba env create --prefix /conda-envs/77e7c34e343598a072c504aaa67b32ce --file /conda-envs/77e7c34e343598a072c504aaa67b32ce/environment.yaml && \
     mamba env create --prefix /conda-envs/cd9d783d1fdbb0c00dbbfb75c50541ce --file /conda-envs/cd9d783d1fdbb0c00dbbfb75c50541ce/environment.yaml && \
-    mamba env create --prefix /conda-envs/6a0511df5be481713e608ce9ccff6344 --file /conda-envs/6a0511df5be481713e608ce9ccff6344/environment.yaml && \
+    mamba env create --prefix /conda-envs/5eb02c7612b8d9986f89c786639b0740 --file /conda-envs/5eb02c7612b8d9986f89c786639b0740/environment.yaml && \
     mamba clean --all -y
