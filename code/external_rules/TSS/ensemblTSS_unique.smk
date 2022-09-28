@@ -4,7 +4,7 @@ rule unique_tss:
   output:
     "../{species}/{genome}/uniqeTSS_bed/{prefixExt}_TSSunique.bed"
   threads: 1
-  conda: "../../conda/r.yaml"
+  conda: "../../conda/genomicranges.yaml"
   params:
     outputFolder = "../{species}/{genome}/uniqeTSS_bed"
   script:
