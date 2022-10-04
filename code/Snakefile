@@ -7,6 +7,11 @@
 # Run to generate the conda environment: snakemake --use-conda --conda-create-envs-only --cores 1
 # Build the docker file: snakemake --containerize > Dockerfile
 
+#############################
+# import
+#############################
+
+import pandas as pd
 
 configfile: "config.yaml"
 containerized: "docker://emblromebioinfo/common_datasets:v0.0.1-alpha"
@@ -48,15 +53,15 @@ for genome in GENOMEID:
 # Build the table of test datasets to download
 samplesData = []
 
-for technique in config["testDatasets"]["technique"]:
-  for organism in config["testDatasets"]["organism"]:
-    pathSingle = config["testDatasets"][technique][organism]["singleEnded"]
-    pathPaired1 = config["testDatasets"][technique][organism]["pairedEnded1"]
-    pathPaired2 = config["testDatasets"][technique][organism]["pairedEnded2"]
-    samplesData.append([technique, organism, "single", pathSingle, "NA"])
-    samplesData.append([technique, organism, "paired", pathPaired1, pathPaired2])
+for tech in config["testDatasets"]["technique"]:
+  for org in config["testDatasets"]["organism"]:
+    pathSingle = config["testDatasets"][tech][org]["singleEnded"]
+    pathPaired1 = config["testDatasets"][tech][org]["pairedEnded1"]
+    pathPaired2 = config["testDatasets"][tech][org]["pairedEnded2"]
+    samplesData.append([tech, org, "single", pathSingle, "NA"])
+    samplesData.append([tech, org, "paired", pathPaired1, pathPaired2])
 
-!!
+df = pd.DataFrame(samplesData)
 
 
 ############
