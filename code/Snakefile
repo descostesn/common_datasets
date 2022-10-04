@@ -36,22 +36,6 @@ onstart:
 
 
 ###############################################################################
-# Variables definition
-###############################################################################
-
-GENOMEID=config["genomeList"]
-GENOMEBIOMART=config["genomeBiomart"]
-
-PREFIXES=[]
-PREFIXESEXT=[]
-SPECIES=[]
-for genome in GENOMEID:
-  PREFIXES.append(config["prefixes"][genome])
-  SPECIES.append(config["species"][genome])
-  PREFIXESEXT.append(config["prefixesExtended"][genome])
-
-
-###############################################################################
 # Reading input table
 ###############################################################################
 
@@ -73,6 +57,20 @@ df.rename(columns={0: 'library_strategy', 1: 'organism', 2: 'end', 3: 'link1', 4
 !!!!!!!!!
 
 
+###############################################################################
+# Variables definition
+###############################################################################
+
+GENOMEID=config["genomeList"]
+GENOMEBIOMART=config["genomeBiomart"]
+
+PREFIXES=[]
+PREFIXESEXT=[]
+SPECIES=[]
+for genome in GENOMEID:
+  PREFIXES.append(config["prefixes"][genome])
+  SPECIES.append(config["species"][genome])
+  PREFIXESEXT.append(config["prefixesExtended"][genome])
 
 
 ############
