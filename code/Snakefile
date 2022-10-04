@@ -50,6 +50,11 @@ for genome in GENOMEID:
   SPECIES.append(config["species"][genome])
   PREFIXESEXT.append(config["prefixesExtended"][genome])
 
+
+###############################################################################
+# Reading input table
+###############################################################################
+
 # Build the table of test datasets to download
 samplesData = []
 
@@ -62,6 +67,64 @@ for tech in config["testDatasets"]["technique"]:
     samplesData.append([tech, org, "paired", pathPaired1, pathPaired2])
 
 df = pd.DataFrame(samplesData)
+df.rename(columns={0: 'library_strategy', 1: 'organism', 2: 'end', 3: 'link1', 4: 'link2'}, inplace=True)
+
+
+## Pameters checking
+
+# Checking organism definition
+tableorg = df['organism'].unique() 
+testhuman = ['human']
+testmouse = ['mouse']
+if (testhuman == tableorg).all():
+    print("\n\n ## The table is only composed of human experiments ##\n")
+elif (testmouse == tableorg).all():
+    print("\n\n ## The table is only composed of mouse experiments ##\n")
+elif ((testhuman == tableorg) | (testmouse == tableorg)).all():
+    print("\n\n ## The table is composed of human and mouse experiments ##\n")
+else:
+    rase KeyError("All samples should be human or mouse, check your config file. To add an organism, contact the developer.")
+
+# Checking the library strategy
+tablestrategy = samplesData['library_strategy'].unique()
+
+if (testhuman == tableorg).all():
+    print("\n\n ## The table is only composed of human experiments ##\n")
+elif (testmouse == tableorg).all():
+    print("\n\n ## The table is only composed of mouse experiments ##\n")
+elif ((testhuman == tableorg) | (testmouse == tableorg)).all():
+    print("\n\n ## The table is composed of human and mouse experiments ##\n")
+else:
+    raise KeyError("All samples should be human or mouse, check your config file. To add an organism, contact the developer.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Checking the library layout
+
+tablelayout = samplesData['library_layout'].unique()
+testlayoutsingle = ['SINGLE - ']
+testlayoutpaired = ['PAIRED - ']
+
+if (testlayoutpaired == tablelayout).all():
+    print("\n\n ## The table is only composed of paired-end experiments ##\n")
+elif (testlayoutsingle == tablelayout).all():
+    print("\n\n ## The table is only composed of single-end experiments ##\n")
+elif ((testlayoutsingle == tablelayout) | (testlayoutpaired == tablelayout)).all():
+    print("\n\n ## The table is composed of single-end and paired-end experiments ##\n")
+else:
+    raise KeyError("All samples should be single or paired end, check your summaryFile.")
+
 
 
 ############
