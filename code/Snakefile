@@ -46,7 +46,17 @@ for genome in GENOMEID:
   PREFIXESEXT.append(config["prefixesExtended"][genome])
 
 # Build the table of test datasets to download
-#!!!!!!!!!!!
+samplesData = []
+
+for technique in config["testDatasets"]["technique"]:
+  for organism in config["testDatasets"]["organism"]:
+    pathSingle = config["testDatasets"][technique][organism]["singleEnded"]
+    pathPaired1 = config["testDatasets"][technique][organism]["pairedEnded1"]
+    pathPaired2 = config["testDatasets"][technique][organism]["pairedEnded2"]
+    samplesData.append([technique, organism, "single", pathSingle, "NA"])
+    samplesData.append([technique, organism, "paired", pathPaired1, pathPaired2])
+
+!!
 
 
 ############
