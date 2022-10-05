@@ -40,8 +40,11 @@ rnaseqNames = dict(zip(["mouse", "human"], rnaseq))
 chipseqNames = dict(zip(["mouse", "human"], chipseq))
 atacseqNames = dict(zip(["mouse", "human"], atacseq))
 
-tesdatasets = [rnaseqNames, chipseqNames, atacseqNames]
+testdatasets = [rnaseqNames, chipseqNames, atacseqNames]
 testdatasetsNames = dict(zip(["RNASeq", "ChIPSeq", "ATACSeq"], tesdatasets))
+testdatasetsNames["technique"] = technique
+testdatasetsNames["organism"] = organism
+
 
 config = [testdatasetsNames]
 config = dict(zip(["testDatasets"], config))
