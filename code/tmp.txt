@@ -25,12 +25,12 @@ atacseqHuman = ["https://www.encodeproject.org/files/ENCFF022FVS/@@download/ENCF
       "https://www.encodeproject.org/files/ENCFF526FOQ/@@download/ENCFF526FOQ.fastq.gz",
       "https://www.encodeproject.org/files/ENCFF310QJA/@@download/ENCFF310QJA.fastq.gz"]
 
-rnaseqMouseNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], rnaseqMouse)
-rnaseqHumanNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], rnaseqHuman)
-chipseqMouseNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], chipseqMouse)
-chipseqHumanNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], chipseqHuman)
-atacseqMouseNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], atacseqMouse)
-atacseqHumanNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], atacseqHuman)
+rnaseqMouseNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], rnaseqMouse))
+rnaseqHumanNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], rnaseqHuman))
+chipseqMouseNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], chipseqMouse))
+chipseqHumanNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], chipseqHuman))
+atacseqMouseNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], atacseqMouse))
+atacseqHumanNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], atacseqHuman))
 
 rnaseq = [rnaseqMouseNames, rnaseqHumanNames]
 chipseq = [chipseqMouseNames, chipseqHumanNames]
@@ -41,7 +41,7 @@ chipseqNames = dict(zip(["mouse", "human"], chipseq))
 atacseqNames = dict(zip(["mouse", "human"], atacseq))
 
 tesdatasets = [rnaseqNames, chipseqNames, atacseqNames]
-testdatasetsNames = dict(zip(["RNASeq", "ChIPSeq", "ATACSeq"], tesdatasets)
+testdatasetsNames = dict(zip(["RNASeq", "ChIPSeq", "ATACSeq"], tesdatasets))
 
 config = [testdatasetsNames]
-config = dict(zip(["testDatasets"], testdatasetsNames))
+config = dict(zip(["testDatasets"], config))
