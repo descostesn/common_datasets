@@ -47,14 +47,29 @@ for tech in config["testDatasets"]["technique"]:
     pathSingle = config["testDatasets"][tech][org]["singleEnded"]
     pathPaired1 = config["testDatasets"][tech][org]["pairedEnded1"]
     pathPaired2 = config["testDatasets"][tech][org]["pairedEnded2"]
-    samplesData.append([tech, org, "single", pathSingle, "NA"])
-    samplesData.append([tech, org, "paired", pathPaired1, pathPaired2])
+    samplesData.append(['_'.join((tech,org)), tech, org, "single", pathSingle, "NA"])
+    samplesData.append(['_'.join((tech,org)), tech, org, "paired", pathPaired1, pathPaired2])
 
 df = pd.DataFrame(samplesData)
-df.rename(columns={0: 'library_strategy', 1: 'organism', 2: 'end', 3: 'link1', 4: 'link2'}, inplace=True)
+df.rename(columns={0: 'samples', 1: 'library_strategy', 2: 'organism', 3: 'library_layout', 4: 'link1', 5: 'link2'}, inplace=True)
 
+###############################################################################
+# checking content
+###############################################################################
 
-!!!!!!!!!
+## checking library layout
+tablelayout = df['library_layout'].unique()
+testlayoutsingle = ['single']
+testlayoutpaired = ['paired']
+
+if (testlayoutpaired == tablelayout).all():
+    print("\n\n ## The table is only composed of paired-end experiments ##\n")
+elif (testlayoutsingle == tablelayout).all():
+    print("\n\n ## The table is only composed of single-end experiments ##\n")
+elif ((testlayoutsingle == tablelayout) | (testlayoutpaired == tablelayout)).all():
+    print("\n\n ## The table is composed of single-end and paired-end experiments ##\n")
+else:
+    raise KeyError("All samples should be single or paired end, check your summaryFile.")
 
 
 ###############################################################################
@@ -71,6 +86,14 @@ for genome in GENOMEID:
   PREFIXES.append(config["prefixes"][genome])
   SPECIES.append(config["species"][genome])
   PREFIXESEXT.append(config["prefixesExtended"][genome])
+
+# Splitting the table into single or paired end experiments
+
+index_single = df['library_layout'] == 'single'
+index_paired = df['library_layout'] == 'paired'
+df_single = df[index_single]
+df_paired = df[index_paired]
+
 
 
 ############
