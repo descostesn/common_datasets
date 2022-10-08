@@ -10,7 +10,7 @@ rnaseqMouse = ["limbPolyAPlus",
 
 rnaseqHuman = ["GM12878PolyAPlus",
       "https://www.encodeproject.org/files/ENCFF729YAX/@@download/ENCFF729YAX.fastq.gz",
-      "adrenalGlandPolyAPlus"
+      "adrenalGlandPolyAPlus",
       "https://www.encodeproject.org/files/ENCFF028DUO/@@download/ENCFF028DUO.fastq.gz",
       "https://www.encodeproject.org/files/ENCFF470RWW/@@download/ENCFF470RWW.fastq.gz"]
 
@@ -38,12 +38,12 @@ atacseqHuman = ["ATACA549",
       "https://www.encodeproject.org/files/ENCFF526FOQ/@@download/ENCFF526FOQ.fastq.gz",
       "https://www.encodeproject.org/files/ENCFF310QJA/@@download/ENCFF310QJA.fastq.gz"]
 
-rnaseqMouseNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], rnaseqMouse))
-rnaseqHumanNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], rnaseqHuman))
-chipseqMouseNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], chipseqMouse))
-chipseqHumanNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], chipseqHuman))
-atacseqMouseNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], atacseqMouse))
-atacseqHumanNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], atacseqHuman))
+rnaseqMouseNames = dict(zip(["nameSingleEnd", "singleEnded", "namePairedEnd", "pairedEnded1", "pairedEnded2"], rnaseqMouse))
+rnaseqHumanNames = dict(zip(["nameSingleEnd", "singleEnded", "namePairedEnd", "pairedEnded1", "pairedEnded2"], rnaseqHuman))
+chipseqMouseNames = dict(zip(["nameSingleEnd", "singleEnded", "namePairedEnd", "pairedEnded1", "pairedEnded2"], chipseqMouse))
+chipseqHumanNames = dict(zip(["nameSingleEnd", "singleEnded", "namePairedEnd", "pairedEnded1", "pairedEnded2"], chipseqHuman))
+atacseqMouseNames = dict(zip(["nameSingleEnd", "singleEnded", "namePairedEnd", "pairedEnded1", "pairedEnded2"], atacseqMouse))
+atacseqHumanNames = dict(zip(["nameSingleEnd", "singleEnded", "namePairedEnd", "pairedEnded1", "pairedEnded2"], atacseqHuman))
 
 rnaseq = [rnaseqMouseNames, rnaseqHumanNames]
 chipseq = [chipseqMouseNames, chipseqHumanNames]
