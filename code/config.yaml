@@ -67,15 +67,19 @@ testDatasets:
     human:
       nameSingleEnd: "H3K36me3BlaER1"
       singleEnded: "https://www.encodeproject.org/files/ENCFF354RIC/@@download/ENCFF354RIC.fastq.gz"
-      namePairedEnd: ""
+      namePairedEnd: "BMI1MCF7"
       pairedEnded1: "https://www.encodeproject.org/files/ENCFF825HMN/@@download/ENCFF825HMN.fastq.gz"
       pairedEnded2: "https://www.encodeproject.org/files/ENCFF240ZBS/@@download/ENCFF240ZBS.fastq.gz"
   ATACSeq:
     mouse:
+      nameSingleEnd: "ATACErythroblast"
       singleEnded: "https://www.encodeproject.org/files/ENCFF535AXY/@@download/ENCFF535AXY.fastq.gz"
+      namePairedEnd: "ATACPatski"
       pairedEnded1: "https://www.encodeproject.org/files/ENCFF600AUS/@@download/ENCFF600AUS.fastq.gz"
       pairedEnded2: "https://www.encodeproject.org/files/ENCFF273QXE/@@download/ENCFF273QXE.fastq.gz"
     human:
+      nameSingleEnd: "ATACA549"
       singleEnded: "https://www.encodeproject.org/files/ENCFF022FVS/@@download/ENCFF022FVS.fastq.gz"
+      namePairedEnd: "ATACCD4positive"
       pairedEnded1: "https://www.encodeproject.org/files/ENCFF526FOQ/@@download/ENCFF526FOQ.fastq.gz"
       pairedEnded2: "https://www.encodeproject.org/files/ENCFF310QJA/@@download/ENCFF310QJA.fastq.gz"
