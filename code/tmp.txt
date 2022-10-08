@@ -1,3 +1,6 @@
+genomeList= ["mm10", "mm39", "hg38"]
+genomeBiomart= ["GRCm38", "GRCm39", "GRCh38"]
+
 technique= ["RNASeq", "ChIPSeq", "ATACSeq"]
 organism= ["mouse", "human"]
 
