@@ -1,36 +1,49 @@
 technique= ["RNASeq", "ChIPSeq", "ATACSeq"]
 organism= ["mouse", "human"]
 
-rnaseqMouse = ["https://www.encodeproject.org/files/ENCFF678XFK/@@download/ENCFF678XFK.fastq.gz",
+rnaseqMouse = ["limbPolyAPlus",
+      "https://www.encodeproject.org/files/ENCFF678XFK/@@download/ENCFF678XFK.fastq.gz",
+      "CD4PolyAPlus",
       "https://www.encodeproject.org/files/ENCFF817RHL/@@download/ENCFF817RHL.fastq.gz",
-      "https://www.encodeproject.org/files/ENCFF533VQX/@@download/ENCFF533VQX.fastq.gz"]
+      "https://www.encodeproject.org/files/ENCFF533VQX/@@download/ENCFF533VQX.fastq.gz",
+      ]
 
-rnaseqHuman = ["https://www.encodeproject.org/files/ENCFF729YAX/@@download/ENCFF729YAX.fastq.gz",
+rnaseqHuman = ["GM12878PolyAPlus",
+      "https://www.encodeproject.org/files/ENCFF729YAX/@@download/ENCFF729YAX.fastq.gz",
+      "adrenalGlandPolyAPlus"
       "https://www.encodeproject.org/files/ENCFF028DUO/@@download/ENCFF028DUO.fastq.gz",
       "https://www.encodeproject.org/files/ENCFF470RWW/@@download/ENCFF470RWW.fastq.gz"]
 
-chipseqMouse = ["https://www.encodeproject.org/files/ENCFF937IMG/@@download/ENCFF937IMG.fastq.gz",
+chipseqMouse = ["H3K27acMacro",
+      "https://www.encodeproject.org/files/ENCFF937IMG/@@download/ENCFF937IMG.fastq.gz",
+      "H3K27me3Patski",
       "https://www.encodeproject.org/files/ENCFF090PQE/@@download/ENCFF090PQE.fastq.gz",
       "https://www.encodeproject.org/files/ENCFF362BSH/@@download/ENCFF362BSH.fastq.gz"]
 
-chipseqHuman = ["https://www.encodeproject.org/files/ENCFF354RIC/@@download/ENCFF354RIC.fastq.gz",
+chipseqHuman = ["H3K36me3BlaER1",
+      "https://www.encodeproject.org/files/ENCFF354RIC/@@download/ENCFF354RIC.fastq.gz",
+      "BMI1MCF7",
       "https://www.encodeproject.org/files/ENCFF825HMN/@@download/ENCFF825HMN.fastq.gz",
       "https://www.encodeproject.org/files/ENCFF240ZBS/@@download/ENCFF240ZBS.fastq.gz"]
 
-atacseqMouse = ["https://www.encodeproject.org/files/ENCFF535AXY/@@download/ENCFF535AXY.fastq.gz",
+atacseqMouse = ["ATACErythroblast",
+      "https://www.encodeproject.org/files/ENCFF535AXY/@@download/ENCFF535AXY.fastq.gz",
+      "ATACPatski",
       "https://www.encodeproject.org/files/ENCFF600AUS/@@download/ENCFF600AUS.fastq.gz",
       "https://www.encodeproject.org/files/ENCFF273QXE/@@download/ENCFF273QXE.fastq.gz"]
 
-atacseqHuman = ["https://www.encodeproject.org/files/ENCFF022FVS/@@download/ENCFF022FVS.fastq.gz",
+atacseqHuman = ["ATACA549",
+      "https://www.encodeproject.org/files/ENCFF022FVS/@@download/ENCFF022FVS.fastq.gz",
+      "ATACCD4positive",
       "https://www.encodeproject.org/files/ENCFF526FOQ/@@download/ENCFF526FOQ.fastq.gz",
       "https://www.encodeproject.org/files/ENCFF310QJA/@@download/ENCFF310QJA.fastq.gz"]
 
-rnaseqMouseNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], rnaseqMouse))
-rnaseqHumanNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], rnaseqHuman))
-chipseqMouseNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], chipseqMouse))
-chipseqHumanNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], chipseqHuman))
-atacseqMouseNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], atacseqMouse))
-atacseqHumanNames = dict(zip(["singleEnded", "pairedEnded1", "pairedEnded2"], atacseqHuman))
+rnaseqMouseNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], rnaseqMouse))
+rnaseqHumanNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], rnaseqHuman))
+chipseqMouseNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], chipseqMouse))
+chipseqHumanNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], chipseqHuman))
+atacseqMouseNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], atacseqMouse))
+atacseqHumanNames = dict(zip(["nameSingleEnd", "singleEnded", namePairedEnd, "pairedEnded1", "pairedEnded2"], atacseqHuman))
 
 rnaseq = [rnaseqMouseNames, rnaseqHumanNames]
 chipseq = [chipseqMouseNames, chipseqHumanNames]
