@@ -45,10 +45,12 @@ samplesData = []
 for tech in config["testDatasets"]["technique"]:
   for org in config["testDatasets"]["organism"]:
     pathSingle = config["testDatasets"][tech][org]["singleEnded"]
+    nameSingle = config["testDatasets"][tech][org]["nameSingleEnd"]
     pathPaired1 = config["testDatasets"][tech][org]["pairedEnded1"]
     pathPaired2 = config["testDatasets"][tech][org]["pairedEnded2"]
-    samplesData.append(['_'.join((tech,org)), tech, org, "single", pathSingle, "NA"])
-    samplesData.append(['_'.join((tech,org)), tech, org, "paired", pathPaired1, pathPaired2])
+    namePaired = config["testDatasets"][tech][org]["namePairedEnd"]
+    samplesData.append([nameSingle, tech, org, "single", pathSingle, "NA"])
+    samplesData.append([namePaired, tech, org, "paired", pathPaired1, pathPaired2])
 
 df = pd.DataFrame(samplesData)
 df.rename(columns={0: 'samples', 1: 'library_strategy', 2: 'organism', 3: 'library_layout', 4: 'link1', 5: 'link2'}, inplace=True)
@@ -93,6 +95,11 @@ index_single = df['library_layout'] == 'single'
 index_paired = df['library_layout'] == 'paired'
 df_single = df[index_single]
 df_paired = df[index_paired]
+
+# Output files names
+
+SINGLESAMPLES = df_single['samples'].tolist()
+PAIREDSAMPLES = df_paired['samples'].tolist()
 
 
 
