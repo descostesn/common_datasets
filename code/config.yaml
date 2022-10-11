@@ -43,41 +43,41 @@ excludeChrom:
 
 testDatasets:
   technique: ["RNASeq", "ChIPSeq", "ATACSeq"]
-  organism: ["mouse", "human"]
+  organism: ["Mus_musculus", "Homo_sapiens"]
   RNASeq:
-    mouse:
+    Mus_musculus:
       nameSingleEnd: "limbPolyAPlus"
       singleEnded: "https://www.encodeproject.org/files/ENCFF678XFK/@@download/ENCFF678XFK.fastq.gz"
       namePairedEnd: "CD4PolyAPlus"
       pairedEnded1: "https://www.encodeproject.org/files/ENCFF817RHL/@@download/ENCFF817RHL.fastq.gz"
       pairedEnded2: "https://www.encodeproject.org/files/ENCFF533VQX/@@download/ENCFF533VQX.fastq.gz"
-    human:
+    Homo_sapiens:
       nameSingleEnd: "GM12878PolyAPlus"
       singleEnded: "https://www.encodeproject.org/files/ENCFF729YAX/@@download/ENCFF729YAX.fastq.gz"
       namePairedEnd: "adrenalGlandPolyAPlus"
       pairedEnded1: "https://www.encodeproject.org/files/ENCFF028DUO/@@download/ENCFF028DUO.fastq.gz"
       pairedEnded2: "https://www.encodeproject.org/files/ENCFF470RWW/@@download/ENCFF470RWW.fastq.gz"
   ChIPSeq:
-    mouse:
+    Mus_musculus:
       nameSingleEnd: "H3K27acMacro"
       singleEnded: "https://www.encodeproject.org/files/ENCFF937IMG/@@download/ENCFF937IMG.fastq.gz"
       namePairedEnd: "H3K27me3Patski"
       pairedEnded1: "https://www.encodeproject.org/files/ENCFF090PQE/@@download/ENCFF090PQE.fastq.gz"
       pairedEnded2: "https://www.encodeproject.org/files/ENCFF362BSH/@@download/ENCFF362BSH.fastq.gz"
-    human:
+    Homo_sapiens:
       nameSingleEnd: "H3K36me3BlaER1"
       singleEnded: "https://www.encodeproject.org/files/ENCFF354RIC/@@download/ENCFF354RIC.fastq.gz"
       namePairedEnd: "BMI1MCF7"
       pairedEnded1: "https://www.encodeproject.org/files/ENCFF825HMN/@@download/ENCFF825HMN.fastq.gz"
       pairedEnded2: "https://www.encodeproject.org/files/ENCFF240ZBS/@@download/ENCFF240ZBS.fastq.gz"
   ATACSeq:
-    mouse:
+    Mus_musculus:
       nameSingleEnd: "ATACErythroblast"
       singleEnded: "https://www.encodeproject.org/files/ENCFF535AXY/@@download/ENCFF535AXY.fastq.gz"
       namePairedEnd: "ATACPatski"
       pairedEnded1: "https://www.encodeproject.org/files/ENCFF600AUS/@@download/ENCFF600AUS.fastq.gz"
       pairedEnded2: "https://www.encodeproject.org/files/ENCFF273QXE/@@download/ENCFF273QXE.fastq.gz"
-    human:
+    Homo_sapiens:
       nameSingleEnd: "ATACA549"
       singleEnded: "https://www.encodeproject.org/files/ENCFF022FVS/@@download/ENCFF022FVS.fastq.gz"
       namePairedEnd: "ATACCD4positive"
