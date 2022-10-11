@@ -1,6 +1,6 @@
 rule download_fastq_single:
   output:
-    "../{speciessingle}/test_datasets/{technique}/fastq/allchrom/{samplename}.fastq.gz"
+    "../{speciessingle}/test_datasets/{technique}/{layoutsingle}/fastq/allchrom/{samplename}.fastq.gz"
   params:
     outputdirectory = lambda wildcards: f"../{wildcards.speciessingle}/test_datasets/{wildcards.technique}/fastq/allchrom",
     linksingle = lambda wildcards: samples_single_forlinks.loc[wildcards.samplename, "link1"]
