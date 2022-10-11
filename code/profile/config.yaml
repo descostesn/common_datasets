@@ -42,6 +42,7 @@ set-threads:
   - unique_tss=1
   - create_whiteLists=1
   - download_fastq_single=1
+  - download_fastq_paired=1
 
 
 #useful to increase/decrease resources of a specific rule (these resources DO NOT need to be defined in the rule)
@@ -58,6 +59,8 @@ set-resources:
   - unique_tss:runtime=00:45:00
   - download_fastq_single:mem_cpu_mb=2000
   - download_fastq_single:runtime=01:00:00
+  - download_fastq_paired:mem_cpu_mb=2000
+  - download_fastq_paired:runtime=01:00:00
 
 
 # For some reasons time needs quotes to be read by snakemake
