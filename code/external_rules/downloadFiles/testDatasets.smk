@@ -21,8 +21,8 @@ rule download_fastq_paired:
     pair2 = "../{speciespaired}/fastq/{technique}/{layoutpaired}/allchrom/{samplenamepaired}_2.fastq.gz"
   params:
     outputdirectory = lambda wildcards: f"../{wildcards.speciespaired}/fastq/{wildcards.technique}/{wildcards.layoutpaired}/fastq/allchrom",
-    linkpair1 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplename, "link1"],
-    linkpair2 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplename, "link2"]
+    linkpair1 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplenamepaired, "link1"],
+    linkpair2 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplenamepaired, "link2"]
   threads: 1    
   shell:
     """
