@@ -58,11 +58,10 @@ atacseqNames = dict(zip(["mouse", "human"], atacseq))
 
 testdatasets = [rnaseqNames, chipseqNames, atacseqNames]
 testdatasetsNames = dict(zip(["RNASeq", "ChIPSeq", "ATACSeq"], testdatasets))
-testdatasetsNames["technique"] = technique
-testdatasetsNames["organism"] = organism
-testdatasetsNames["genomeList"] = genomeList
-testdatasetsNames["genomeBiomart"] = genomeBiomart
-
 
 config = [testdatasetsNames]
 config = dict(zip(["testDatasets"], config))
+config["technique"] = technique
+config["organism"] = organism
+config["genomeList"] = genomeList
+config["genomeBiomart"] = genomeBiomart
