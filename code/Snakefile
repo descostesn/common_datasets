@@ -71,7 +71,7 @@ elif (testlayoutsingle == tablelayout).all():
 elif ((testlayoutsingle == tablelayout) | (testlayoutpaired == tablelayout)).all():
     print("\n\n ## The table is composed of single-end and paired-end experiments ##\n")
 else:
-    raise KeyError("All samples should be single or paired end, check your summaryFile.")
+    raise KeyError("The library layout should contain 'single' or 'paired'.")
 
 
 ###############################################################################
@@ -101,6 +101,10 @@ df_paired = df[index_paired]
 SINGLESAMPLES = df_single['samples'].tolist()
 PAIREDSAMPLES = df_paired['samples'].tolist()
 
+# For Retrieving links to download sra files
+
+samples_single_forlinks = pd.DataFrame(df_single).set_index("samples",drop=False)
+samples_paired_forlinks = pd.DataFrame(df_paired).set_index("samples",drop=False)
 
 
 ############
