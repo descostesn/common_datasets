@@ -33,6 +33,7 @@ onstart:
     shell("mkdir -p jobs/sort_format_blacklist")
     shell("mkdir -p jobs/unique_tss")
     shell("mkdir -p jobs/create_whiteLists")
+    shell("mkdir -p jobs/download_fastq_single")
 
 
 ###############################################################################
@@ -106,6 +107,14 @@ PAIREDSAMPLES = df_paired['samples'].tolist()
 samples_single_forlinks = pd.DataFrame(df_single).set_index("samples",drop=False)
 samples_paired_forlinks = pd.DataFrame(df_paired).set_index("samples",drop=False)
 
+# Technique names
+SINGLETECH = df_single['library_strategy'].tolist()
+PAIREDTECH = df_paired['library_strategy'].tolist()
+
+## Species name
+SPECIESSINGLE = df_single['organism'].tolist()
+SPECIESPAIRED = df_paired['organism'].tolist()
+
 
 ############
 # Rule all
@@ -126,7 +135,8 @@ rule all:
     expand("../{species}/{genome}/blacklist/{genomeBiomart}-encodeblacklist.txt", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
     expand("../{species}/{genome}/blacklist/{genomeBiomart}-encodeblacklist-sorted.bed", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
     expand("../{species}/{genome}/uniqeTSS_bed/{prefixExt}_TSSunique.bed", zip, species=SPECIES, genome=GENOMEID, prefixExt=PREFIXESEXT),
-    expand("../{species}/{genome}/whitelist/{genomeBiomart}-encodewhitelist-sorted.bed", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART)
+    expand("../{species}/{genome}/whitelist/{genomeBiomart}-encodewhitelist-sorted.bed", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
+    expand(""../{speciessingle}/test_datasets/{technique}/fastq/allchrom/{samplename}.fastq.gz", zip, speciessingle=SPECIESSINGLE, technique=SINGLETECH, samplename=SINGLESAMPLES) 
 
 
 include: "external_rules/downloadFiles/downloadFasta.smk"
@@ -137,3 +147,5 @@ include: "external_rules/downloadFiles/chromInfo.smk"
 include: "external_rules/downloadFiles/blacklists.smk"
 include: "external_rules/TSS/ensemblTSS_unique.smk"
 include: "external_rules/whiteLists/whiteLists.smk"
+include: "external_rules/downloadFiles/testDatasets.smk"
+

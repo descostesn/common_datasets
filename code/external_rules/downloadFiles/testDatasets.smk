@@ -1,10 +1,16 @@
-def retrieve_test_singleEnded(wildcards):
-
-
-rule downloadTestData_single:
+rule download_fastq_single:
   output:
-    "../test_datasets/{technique}/{organism}/single_ended/{singleEndName}.fastq.gz"
+    "../{speciessingle}/test_datasets/{technique}/fastq/allchrom/{samplename}.fastq.gz"
   params:
-    fileURL = lambda wildcards: config["testDatasets"][wildcards.technique][wildcards.organism]["singleEnded"]
+    outputdirectory = lambda wildcards: "../{wildcards.speciessingle}/test_datasets/{wildcards.technique}/fastq/allchrom"
+    linksingle = lambda wildcards: samples_single_forlinks.loc[wildcards.singlename, "link1"]
+  threads: 1    
   shell:
-  
+    """
+    echo "Downloading {params.linksingle}"
+    wget --directory-prefix={params.outputdirectory} {params.linksingle}
+    sleep 10s
+    FILENAME=`basename {params.linksingle}`
+    mv {params.outputdirectory}/$FILENAME {output}  
+    """
+
