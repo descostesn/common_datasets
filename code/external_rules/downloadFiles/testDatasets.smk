@@ -1,8 +1,8 @@
 rule download_fastq_single:
   output:
-    "../{speciessingle}/test_datasets/{technique}/{layoutsingle}/fastq/allchrom/{samplename}.fastq.gz"
+    "../{speciessingle}/fastq/{technique}/{layoutsingle}/fastq/allchrom/{samplename}.fastq.gz"
   params:
-    outputdirectory = lambda wildcards: f"../{wildcards.speciessingle}/test_datasets/{wildcards.technique}/{wildcards.layoutsingle}/fastq/allchrom",
+    outputdirectory = lambda wildcards: f"../{wildcards.speciessingle}/fastq/{wildcards.technique}/{wildcards.layoutsingle}/fastq/allchrom",
     linksingle = lambda wildcards: samples_single_forlinks.loc[wildcards.samplename, "link1"]
   threads: 1    
   shell:
@@ -13,4 +13,3 @@ rule download_fastq_single:
     FILENAME=`basename {params.linksingle}`
     mv {params.outputdirectory}/$FILENAME {output}  
     """
-
