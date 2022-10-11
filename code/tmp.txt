@@ -59,9 +59,46 @@ atacseqNames = dict(zip(["mouse", "human"], atacseq))
 testdatasets = [rnaseqNames, chipseqNames, atacseqNames]
 testdatasetsNames = dict(zip(["RNASeq", "ChIPSeq", "ATACSeq"], testdatasets))
 
+prefixes = ["Mus_musculus.GRCm38", "Mus_musculus.GRCm39", "Homo_sapiens.GRCh38"]
+prefixesExtended = ["Mus_musculus.GRCm38.102", "Mus_musculus.GRCm39.107", "Homo_sapiens.GRCh38.107"]
+species = ["Mus_musculus", "Mus_musculus", "Homo_sapiens"]
+fasta = ["http://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.chromosome.1.fa.gz",
+         "http://ftp.ensembl.org/pub/release-107/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.chromosome.1.fa.gz",
+         "http://ftp.ensembl.org/pub/release-107/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.1.fa.gz"]
+gtf = ["http://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.chr.gtf.gz",
+       "http://ftp.ensembl.org/pub/release-107/gtf/mus_musculus/Mus_musculus.GRCm39.107.chr.gtf.gz"
+       "http://ftp.ensembl.org/pub/release-107/gtf/homo_sapiens/Homo_sapiens.GRCh38.107.chr.gtf.gz"]
+gff = ["http://ftp.ensembl.org/pub/release-102/gff3/mus_musculus/Mus_musculus.GRCm38.102.chr.gff3.gz",
+       "http://ftp.ensembl.org/pub/release-107/gff3/mus_musculus/Mus_musculus.GRCm39.107.chr.gff3.gz",
+       "http://ftp.ensembl.org/pub/release-107/gff3/homo_sapiens/Homo_sapiens.GRCh38.107.chr.gff3.gz"]
+blacklists = ["https://github.com/Boyle-Lab/Blacklist/raw/master/lists/mm10-blacklist.v2.bed.gz",
+              "https://github.com/Boyle-Lab/Blacklist/files/7476805/mm10-blacklist.v2.Liftover.mm39.bed.txt",
+              "https://github.com/Boyle-Lab/Blacklist/raw/master/lists/hg38-blacklist.v2.bed.gz"]
+excludeChrom = ["MT", "MT", "MT"]
+  
+  
+prefixes = dict(zip(["mm10", "mm39", "hg38"], prefixes))
+prefixesExtended = dict(zip(["mm10", "mm39", "hg38"], prefixesExtended))
+species = dict(zip(["mm10", "mm39", "hg38"], species))
+fasta = dict(zip(["mm10", "mm39", "hg38"], fasta))
+gtf = dict(zip(["mm10", "mm39", "hg38"], gtf))
+gff = dict(zip(["mm10", "mm39", "hg38"], gff))
+blacklists = dict(zip(["mm10", "mm39", "hg38"], blacklists))
+excludeChrom = dict(zip(["mm10", "mm39", "hg38"], excludeChrom))
+
+
 config = [testdatasetsNames]
 config = dict(zip(["testDatasets"], config))
 config["technique"] = technique
 config["organism"] = organism
 config["genomeList"] = genomeList
 config["genomeBiomart"] = genomeBiomart
+
+config["prefixes"] = prefixes
+config["prefixesExtended"] = prefixesExtended
+config["species"] = species
+config["fasta"] = fasta
+config["gtf"] = gtf
+config["gff"] = gff
+config["blacklists"] = blacklists
+config["excludeChrom"] = excludeChrom
