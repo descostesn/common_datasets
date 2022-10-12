@@ -17,10 +17,10 @@ rule download_fastq_single:
 
 rule download_fastq_paired:
   output:
-    pair1 = "../{speciespaired}/fastq/{technique}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz",
-    pair2 = "../{speciespaired}/fastq/{technique}/{layoutpaired}/allchrom/{samplenamepaired}_2.fastq.gz"
+    pair1 = "../test/{speciespaired}/fastq/{technique}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz",
+    pair2 = "../test/{speciespaired}/fastq/{technique}/{layoutpaired}/allchrom/{samplenamepaired}_2.fastq.gz"
   params:
-    outputdirectory = lambda wildcards: f"../{wildcards.speciespaired}/fastq/{wildcards.technique}/{wildcards.layoutpaired}/fastq/allchrom",
+    outputdirectory = lambda wildcards: f"../test/{wildcards.speciespaired}/fastq/{wildcards.technique}/{wildcards.layoutpaired}/fastq/allchrom",
     linkpair1 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplenamepaired, "link1"],
     linkpair2 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplenamepaired, "link2"]
   threads: 1    
