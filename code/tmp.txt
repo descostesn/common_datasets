@@ -89,11 +89,11 @@ excludeChrom = dict(zip(["mm10", "mm39", "hg38"], excludeChrom))
 
 config = [testdatasetsNames]
 config = dict(zip(["testDatasets"], config))
-config["technique"] = technique
-config["organism"] = organism
+config["testDatasets"]["technique"] = technique
+config["testDatasets"]["organism"] = organism
+
 config["genomeList"] = genomeList
 config["genomeBiomart"] = genomeBiomart
-
 config["prefixes"] = prefixes
 config["prefixesExtended"] = prefixesExtended
 config["species"] = species
