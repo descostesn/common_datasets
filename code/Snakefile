@@ -34,7 +34,7 @@ onstart:
     shell("mkdir -p jobs/unique_tss")
     shell("mkdir -p jobs/create_whiteLists")
     shell("mkdir -p jobs/download_fastq_single")
-    shell("mkdir -p jobs/download_fastq_paired")
+#    shell("mkdir -p jobs/download_fastq_paired")
 
 
 ###############################################################################
