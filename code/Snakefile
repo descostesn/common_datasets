@@ -141,7 +141,7 @@ rule all:
     expand("../{species}/{genome}/blacklist/{genomeBiomart}-encodeblacklist-sorted.bed", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
     expand("../{species}/{genome}/uniqeTSS_bed/{prefixExt}_TSSunique.bed", zip, species=SPECIES, genome=GENOMEID, prefixExt=PREFIXESEXT),
     expand("../{species}/{genome}/whitelist/{genomeBiomart}-encodewhitelist-sorted.bed", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
-    expand("../{speciessingle}/fastq/{technique}/{layoutsingle}/allchrom/{samplename}.fastq.gz", zip, speciessingle=SPECIESSINGLE, technique=SINGLETECH, layoutsingle=LAYOUTSINGLE, samplename=SINGLESAMPLES),
+    #expand("../{speciessingle}/fastq/{technique}/{layoutsingle}/allchrom/{samplename}.fastq.gz", zip, speciessingle=SPECIESSINGLE, technique=SINGLETECH, layoutsingle=LAYOUTSINGLE, samplename=SINGLESAMPLES),
     expand("../{speciespaired}/fastq/{technique}/{layoutpaired}/allchrom/{samplenamepaired}.fastq.gz", zip, speciespaired=SPECIESPAIRED, technique=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
     #expand("../{speciespaired}/fastq/{technique}/{layoutpaired}/allchrom/{samplenamepaired}_2.fastq.gz", zip, speciespaired=SPECIESPAIRED, technique=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES)
 
