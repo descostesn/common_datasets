@@ -17,7 +17,7 @@ rule download_fastq_single:
 
 rule download_fastq_paired:
   output:
-    pair1 = "../test/{speciespaired}/fastq/{technique}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz"
+    pair1 = "../test/{speciespaired}/fastq/{technique}/{layoutpaired}/allchrom/{samplenamepaired}.fastq.gz"
   params:
     outputdirectory = lambda wildcards: f"../test/{wildcards.speciespaired}/fastq/{wildcards.technique}/{wildcards.layoutpaired}/fastq/allchrom",
     linkpair1 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplenamepaired, "link1"]
