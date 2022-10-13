@@ -16,7 +16,7 @@ rule download_fastq_single:
 
 rule download_fastq_paired:
   output:
-    "../{speciespaired}/fastq/{techniquepaired}/test.txt"
+    "../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/test.txt"
   threads: 1
   shell:
     "echo 'hello' > {output}"
