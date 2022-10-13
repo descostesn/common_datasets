@@ -6,7 +6,7 @@ rule download_fastq_single:
     linksingle = lambda wildcards: samples_single_forlinks.loc[wildcards.samplenamesingle, "link1"]
   threads: 1
   wildcard_constraints:
-    samplenamesingle="\w+^_^[1-2]"
+    samplenamesingle="^_"
   shell:
     """
     echo "Downloading {params.linksingle}"
