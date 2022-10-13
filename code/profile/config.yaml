@@ -26,7 +26,7 @@ max-jobs-per-second: 1
 max-status-checks-per-second: 10
 jobs: 400
 jobname: "{rule}.{jobid}"
-cluster: "sbatch --account=lancrin --output=\"jobs/{rule}/slurm_%x_%j.out\" --error=\"jobs/{rule}/slurm_%x_%j.log\" --cpus-per-task={threads} --time={resources.runtime} --mem-per-cpu={resources.mem_cpu_mb} --ntasks=1 --parsable" # --parsable added for handling the timeout exception
+cluster: "sbatch --output=\"jobs/{rule}/slurm_%x_%j.out\" --error=\"jobs/{rule}/slurm_%x_%j.log\" --cpus-per-task={threads} --time={resources.runtime} --mem-per-cpu={resources.mem_cpu_mb} --ntasks=1 --parsable" # --parsable added for handling the timeout exception
 cluster-status: "./profile/status-sacct.sh" #  Use to handle timeout exception, do not forget to chmod +x
 
 
