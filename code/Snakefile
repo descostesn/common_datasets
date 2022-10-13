@@ -133,7 +133,7 @@ rule all:
     expand("../{species}/{genome}/bowtie2_index/{prefix}.1.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
     expand("../{species}/{genome}/bowtie2_index/{prefix}.2.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
     expand("../{species}/{genome}/bowtie2_index/{prefix}.3.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
-    expand("../{species}/{genome}/bowtie2_index/{prefix}.4.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
+    #expand("../{species}/{genome}/bowtie2_index/{prefix}.4.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
     expand("../{species}/{genome}/bowtie2_index/{prefix}.rev.1.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
     expand("../{species}/{genome}/bowtie2_index/{prefix}.rev.2.bt2", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES),
     expand("../{species}/{genome}/chromInfo/{genomeBiomart}-chromInfo.txt", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
