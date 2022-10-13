@@ -16,7 +16,9 @@ rule download_fastq_single:
 
 rule download_fastq_paired:
   output:
-    "../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq"
+    "../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz"
+  wildcard_constraints:
+    samplenamepaired="\w+^_^[1-2]"
   threads: 1
   shell:
     "echo 'hello' > {output}"
