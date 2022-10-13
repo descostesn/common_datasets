@@ -5,6 +5,8 @@ rule download_fastq_single:
     outputdirectory = lambda wildcards: f"../{wildcards.speciessingle}/fastq/{wildcards.techniquesingle}/{wildcards.layoutsingle}/fastq/allchrom",
     linksingle = lambda wildcards: samples_single_forlinks.loc[wildcards.samplenamesingle, "link1"]
   threads: 1
+  wildcard_constraints:
+    samplenamesingle="[0-9A-Za-z]+"
   shell:
     """
     echo "Downloading {params.linksingle}"
