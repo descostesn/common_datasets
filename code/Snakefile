@@ -156,5 +156,5 @@ include: "external_rules/downloadFiles/chromInfo.smk"
 include: "external_rules/downloadFiles/blacklists.smk"
 include: "external_rules/TSS/ensemblTSS_unique.smk"
 include: "external_rules/whiteLists/whiteLists.smk"
-#include: "external_rules/downloadFiles/testDatasets.smk"
+include: "external_rules/downloadFiles/testDatasets.smk"
 
