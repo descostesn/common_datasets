@@ -34,7 +34,7 @@ onstart:
     shell("mkdir -p jobs/unique_tss")
     shell("mkdir -p jobs/create_whiteLists")
     shell("mkdir -p jobs/download_fastq_single")
-#    shell("mkdir -p jobs/download_fastq_paired")
+    shell("mkdir -p jobs/download_fastq_paired")
 
 
 ###############################################################################
@@ -143,7 +143,8 @@ rule all:
     expand("../{species}/{genome}/blacklist/{genomeBiomart}-encodeblacklist-sorted.bed", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
     expand("../{species}/{genome}/uniqeTSS_bed/{prefixExt}_TSSunique.bed", zip, species=SPECIES, genome=GENOMEID, prefixExt=PREFIXESEXT),
     expand("../{species}/{genome}/whitelist/{genomeBiomart}-encodewhitelist-sorted.bed", zip, species=SPECIES, genome=GENOMEID, genomeBiomart=GENOMEBIOMART),
-    expand("../{speciessingle}/fastq/{techniquesingle}/{layoutsingle}/allchrom/{samplenamesingle}.fastq.gz", zip, speciessingle=SPECIESSINGLE, techniquesingle=SINGLETECH, layoutsingle=LAYOUTSINGLE, samplenamesingle=SINGLESAMPLES)
+    expand("../{speciessingle}/fastq/{techniquesingle}/{layoutsingle}/allchrom/{samplenamesingle}.fastq.gz", zip, speciessingle=SPECIESSINGLE, techniquesingle=SINGLETECH, layoutsingle=LAYOUTSINGLE, samplenamesingle=SINGLESAMPLES),
+    "../test/test.txt"
 #    expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
 #    expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_2.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES)
 

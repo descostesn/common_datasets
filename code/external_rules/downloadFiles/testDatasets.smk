@@ -14,6 +14,12 @@ rule download_fastq_single:
     mv {params.outputdirectory}/$FILENAME {output}  
     """
 
+rule download_fastq_paired:
+  output:
+    "../test/test.txt"
+  threads: 1
+  shell:
+    "echo 'hello' > {output}"
 
 #rule download_fastq_paired:
 #  output:
