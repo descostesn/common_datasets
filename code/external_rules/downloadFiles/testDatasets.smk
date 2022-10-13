@@ -4,7 +4,9 @@ rule download_fastq_single:
   params:
     outputdirectory = lambda wildcards: f"../{wildcards.speciessingle}/fastq/{wildcards.techniquesingle}/{wildcards.layoutsingle}/fastq/allchrom",
     linksingle = lambda wildcards: samples_single_forlinks.loc[wildcards.samplenamesingle, "link1"]
-  threads: 1    
+  threads: 1
+    wildcard_constraints:
+    samplenamesingle="\w+^_^[1-2]"
   shell:
     """
     echo "Downloading {params.linksingle}"
@@ -17,8 +19,6 @@ rule download_fastq_single:
 rule download_fastq_paired:
   output:
     "../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz"
-  wildcard_constraints:
-    samplenamepaired="\w+^_^[1-2]"
   threads: 1
   shell:
     "echo 'hello' > {output}"
