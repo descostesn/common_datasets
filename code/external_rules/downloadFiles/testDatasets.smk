@@ -23,6 +23,10 @@ rule download_fastq_paired:
   threads: 1
   wildcard_constraints:
     samplenamepaired="[0-9A-Za-z]+"
+  params:
+    outputdirectory = lambda wildcards: f"../{wildcards.speciespaired}/fastq/{wildcards.techniquepaired}/{wildcards.layoutpaired}/fastq/allchrom",
+    linkpair1 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplenamepaired, "link1"],
+    linkpair2 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplenamepaired, "link2"]
   shell:
     "echo 'hello' > {output}"
 
