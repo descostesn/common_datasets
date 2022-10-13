@@ -120,7 +120,7 @@ SPECIESPAIRED = df_paired['organism'].tolist()
 LAYOUTSINGLE = df_single['library_layout'].tolist()
 LAYOUTPAIRED = df_paired['library_layout'].tolist()
 
-print("This is layout single " + LAYOUTSINGLE)
+print("This is layout single " + LAYOUTSINGLE.tostring())
 
 ############
 # Rule all
