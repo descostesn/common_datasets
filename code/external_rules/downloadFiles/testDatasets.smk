@@ -2,7 +2,7 @@ rule download_fastq_single:
   output:
     "../{speciessingle}/fastq/{technique}/{layoutsingle}/allchrom/{samplenamesingle}.fastq.gz"
   wildcard_constraints:
-    samplenamesingle="\w+^_"
+    samplenamesingle="\w+"
   params:
     outputdirectory = lambda wildcards: f"../{wildcards.speciessingle}/fastq/{wildcards.technique}/{wildcards.layoutsingle}/fastq/allchrom",
     linksingle = lambda wildcards: samples_single_forlinks.loc[wildcards.samplename, "link1"]
