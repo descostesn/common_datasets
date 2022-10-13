@@ -19,7 +19,7 @@ rule download_fastq_paired:
     "../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz"
   threads: 1
   wildcard_constraints:
-    samplenamepaired="^_"
+    samplenamepaired="[0-9A-Za-z]+"
   shell:
     "echo 'hello' > {output}"
 
