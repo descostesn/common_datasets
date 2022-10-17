@@ -40,6 +40,7 @@ set-threads:
   - create_whiteLists=1
   - download_fastq_single=1
   - download_fastq_paired=1
+  - build_star_index=8
 
 
 #useful to increase/decrease resources of a specific rule (these resources DO NOT need to be defined in the rule)
@@ -58,6 +59,8 @@ set-resources:
   - download_fastq_single:runtime=01:00:00
   - download_fastq_paired:mem_cpu_mb=2000
   - download_fastq_paired:runtime=01:00:00
+  - build_star_index:mem_cpu_mb=1250
+  - build_star_index:runtime=00:40:00
 
 
 # For some reasons time needs quotes to be read by snakemake
