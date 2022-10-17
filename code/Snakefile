@@ -14,7 +14,7 @@
 import pandas as pd
 
 configfile: "config.yaml"
-containerized: "docker://emblromebioinfo/common_datasets:v0.0.1-alpha"
+#containerized: "docker://emblromebioinfo/common_datasets:v0.0.1-alpha"
 
 
 ###############################################################################
