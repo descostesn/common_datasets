@@ -145,7 +145,7 @@ rule all:
     expand("../{speciessingle}/fastq/{techniquesingle}/{layoutsingle}/allchrom/{samplenamesingle}.fastq.gz", zip, speciessingle=SPECIESSINGLE, techniquesingle=SINGLETECH, layoutsingle=LAYOUTSINGLE, samplenamesingle=SINGLESAMPLES),
     expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
     expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_2.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
-    expand("../{species}/{genome}/STAR_index-{prefix}-{prefixExt}", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES, prefixExt=PREFIXESEXT)
+    expand("../{species}/{genome}/STAR_index/{prefix}-{prefixExt}", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES, prefixExt=PREFIXESEXT)
 
 
 include: "external_rules/downloadFiles/downloadFasta.smk"

@@ -3,7 +3,7 @@ rule build_star_index:
     fa = "../{species}/{genome}/fasta/{prefix}.dna.chromosome.fa",
     gtf = "../{species}/{genome}/gtf/{prefixExt}.chr.gtf"
   output:
-    directory("../{species}/{genome}/STAR_index-{prefix}-{prefixExt}")
+    directory("../{species}/{genome}/STAR_index/{prefix}-{prefixExt}")
   conda: "../../conda/star.yaml"
   threads: 8
   shell:
