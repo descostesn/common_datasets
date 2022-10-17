@@ -1,3 +1,7 @@
+
+
+ ## The table is composed of single-end and paired-end experiments ##
+
 FROM condaforge/mambaforge:latest
 LABEL io.github.snakemake.containerized="true"
 LABEL io.github.snakemake.conda_env_hash="7255a2f0b96be5ccf003fe6699d21cf2931a6460214bbce9921d30cebe396c84"
