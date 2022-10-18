@@ -2,7 +2,7 @@ genomeList= ["mm10", "mm39", "hg38"]
 genomeBiomart= ["GRCm38", "GRCm39", "GRCh38"]
 
 technique= ["RNASeq", "ChIPSeq", "ATACSeq"]
-organism: ["Mus_musculus", "Homo_sapiens"]
+organism= ["Mus_musculus", "Homo_sapiens"]
 
 rnaseqMouse = ["limbPolyAPlus",
       "https://www.encodeproject.org/files/ENCFF678XFK/@@download/ENCFF678XFK.fastq.gz",
@@ -52,9 +52,9 @@ rnaseq = [rnaseqMouseNames, rnaseqHumanNames]
 chipseq = [chipseqMouseNames, chipseqHumanNames]
 atacseq = [atacseqMouseNames, atacseqHumanNames]
 
-rnaseqNames = dict(zip(["mouse", "human"], rnaseq))
-chipseqNames = dict(zip(["mouse", "human"], chipseq))
-atacseqNames = dict(zip(["mouse", "human"], atacseq))
+rnaseqNames = dict(zip(["Mus_musculus", "Homo_sapiens"], rnaseq))
+chipseqNames = dict(zip(["Mus_musculus", "Homo_sapiens"], chipseq))
+atacseqNames = dict(zip(["Mus_musculus", "Homo_sapiens"], atacseq))
 
 testdatasets = [rnaseqNames, chipseqNames, atacseqNames]
 testdatasetsNames = dict(zip(["RNASeq", "ChIPSeq", "ATACSeq"], testdatasets))
