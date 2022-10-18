@@ -3,7 +3,7 @@ rule download_fastq_single:
     "../{speciessingle}/fastq/{techniquesingle}/{layoutsingle}/allchrom/{samplenamesingle}.fastq.gz"
   params:
     outputdirectory = lambda wildcards: f"../{wildcards.speciessingle}/fastq/{wildcards.techniquesingle}/{wildcards.layoutsingle}/fastq/allchrom",
-    linksingle = lambda wildcards: samples_single_forlinks.loc[wildcards.samplenamesingle, "link1"]
+    linksingle = lambda wildcards: samples_single_indexedPD.loc[wildcards.samplenamesingle, "link1"]
   threads: 1
   wildcard_constraints:
     samplenamesingle="[0-9A-Za-z]+"
@@ -25,8 +25,8 @@ rule download_fastq_paired:
     samplenamepaired="[0-9A-Za-z]+"
   params:
     outputdirectory = lambda wildcards: f"../{wildcards.speciespaired}/fastq/{wildcards.techniquepaired}/{wildcards.layoutpaired}/fastq/allchrom",
-    linkpair1 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplenamepaired, "link1"],
-    linkpair2 = lambda wildcards: samples_paired_forlinks.loc[wildcards.samplenamepaired, "link2"]
+    linkpair1 = lambda wildcards: samples_paired_indexedPD.loc[wildcards.samplenamepaired, "link1"],
+    linkpair2 = lambda wildcards: samples_paired_indexedPD.loc[wildcards.samplenamepaired, "link2"]
   shell:
     """
     echo "Downloading {params.linkpair1} and {params.linkpair2}"
