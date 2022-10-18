@@ -61,6 +61,8 @@ testdatasetsNames = dict(zip(["RNASeq", "ChIPSeq", "ATACSeq"], testdatasets))
 
 prefixes = ["Mus_musculus.GRCm38", "Mus_musculus.GRCm39", "Homo_sapiens.GRCh38"]
 prefixesExtended = ["Mus_musculus.GRCm38.102", "Mus_musculus.GRCm39.107", "Homo_sapiens.GRCh38.107"]
+genomes = [["mm10", "mm39"], ["hg38"]]
+
 species = ["Mus_musculus", "Mus_musculus", "Homo_sapiens"]
 fasta = ["http://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.chromosome.1.fa.gz",
          "http://ftp.ensembl.org/pub/release-107/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.chromosome.1.fa.gz",
@@ -79,6 +81,7 @@ excludeChrom = ["MT", "MT", "MT"]
   
 prefixes = dict(zip(["mm10", "mm39", "hg38"], prefixes))
 prefixesExtended = dict(zip(["mm10", "mm39", "hg38"], prefixesExtended))
+genomes = dict(zip(["Mus_musculus", "Homo_sapiens"], genomes))
 species = dict(zip(["mm10", "mm39", "hg38"], species))
 fasta = dict(zip(["mm10", "mm39", "hg38"], fasta))
 gtf = dict(zip(["mm10", "mm39", "hg38"], gtf))
@@ -96,6 +99,7 @@ config["genomeList"] = genomeList
 config["genomeBiomart"] = genomeBiomart
 config["prefixes"] = prefixes
 config["prefixesExtended"] = prefixesExtended
+config["genomes"] = genomes
 config["species"] = species
 config["fasta"] = fasta
 config["gtf"] = gtf
