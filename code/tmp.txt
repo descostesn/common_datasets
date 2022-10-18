@@ -2,7 +2,7 @@ genomeList= ["mm10", "mm39", "hg38"]
 genomeBiomart= ["GRCm38", "GRCm39", "GRCh38"]
 
 technique= ["RNASeq", "ChIPSeq", "ATACSeq"]
-organism= ["mouse", "human"]
+organism: ["Mus_musculus", "Homo_sapiens"]
 
 rnaseqMouse = ["limbPolyAPlus",
       "https://www.encodeproject.org/files/ENCFF678XFK/@@download/ENCFF678XFK.fastq.gz",
