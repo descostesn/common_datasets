@@ -106,8 +106,8 @@ PAIREDSAMPLES = df_paired['samples'].tolist()
 
 # For Retrieving links to download sra files
 
-samples_single_forlinks = pd.DataFrame(df_single).set_index("samples",drop=False)
-samples_paired_forlinks = pd.DataFrame(df_paired).set_index("samples",drop=False)
+samples_single_indexedPD = pd.DataFrame(df_single).set_index("samples",drop=False)
+samples_paired_indexedPD = pd.DataFrame(df_paired).set_index("samples",drop=False)
 
 # Technique names
 SINGLETECH = df_single['library_strategy'].tolist()
@@ -145,7 +145,14 @@ rule all:
     expand("../{speciessingle}/fastq/{techniquesingle}/{layoutsingle}/allchrom/{samplenamesingle}.fastq.gz", zip, speciessingle=SPECIESSINGLE, techniquesingle=SINGLETECH, layoutsingle=LAYOUTSINGLE, samplenamesingle=SINGLESAMPLES),
     expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
     expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_2.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
-    expand("../{species}/{genome}/STAR_index/{prefix}-{prefixExt}", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES, prefixExt=PREFIXESEXT)
+    expand("../{species}/{genome}/STAR_index/{prefix}-{prefixExt}", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES, prefixExt=PREFIXESEXT),
+    
+    
+    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Aligned.sortedByCoord.out.bam", speciessingle=SPECIESSINGLE, genomesingle=, samplenamesingle=SINGLESAMPLES),!!
+    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.final.out",
+    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.out",
+    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.progress.out",
+    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-SJ.out.tab"
 
 
 include: "external_rules/downloadFiles/downloadFasta.smk"
@@ -158,3 +165,4 @@ include: "external_rules/TSS/ensemblTSS_unique.smk"
 include: "external_rules/whiteLists/whiteLists.smk"
 include: "external_rules/downloadFiles/testDatasets.smk"
 include: "external_rules/star/indexStar.smk"
+#include: "external_rules/star/alignStar.smk"
