@@ -16,6 +16,10 @@ species:
   mm39: "Mus_musculus"
   hg38: "Homo_sapiens"
 
+genomes:
+  Mus_musculus: ["mm10", "mm39"]
+  Homo_sapiens: ["hg38"]
+
 fasta:
   mm10: "http://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.chromosome.1.fa.gz"
   mm39: "http://ftp.ensembl.org/pub/release-107/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.chromosome.1.fa.gz"
