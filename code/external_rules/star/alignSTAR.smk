@@ -1,10 +1,10 @@
 def fq_and_index_single(wildcards):
   sampleName = wildcards.samplenamessingle
-  species = samples_single_indexedPD.loc[sampleName, "organism"]
+  speciessingle = samples_single_indexedPD.loc[sampleName, "organism"]
   genomes = config["genomes"][species]
   for genome in genomes:
-    return {"fq" = "../" + species + "/fastq/RNASeq/single/allchrom/" + sampleName + ".fastq.gz",
-            "index" = "../" + species + "/" + genome + "/STAR_index/" + config["prefixes"][genome] + "-" + config[prefixesExtended][genome]
+    return {"fq" = "../" + speciessingle + "/fastq/RNASeq/single/allchrom/" + sampleName + ".fastq.gz",
+            "index" = "../" + speciessingle + "/" + genome + "/STAR_index/" + config["prefixes"][genome] + "-" + config[prefixesExtended][genome]
             }
 
 rule alignstar_single:
