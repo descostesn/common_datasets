@@ -36,6 +36,7 @@ onstart:
     shell("mkdir -p jobs/download_fastq_single")
     shell("mkdir -p jobs/download_fastq_paired")
     shell("mkdir -p jobs/build_star_index")
+    shell("mkdir -p jobs/alignstar_single")
 
 
 ###############################################################################
@@ -146,13 +147,11 @@ rule all:
     expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
     expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_2.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
     expand("../{species}/{genome}/STAR_index/{prefix}-{prefixExt}", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES, prefixExt=PREFIXESEXT),
-    
-    
-    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Aligned.sortedByCoord.out.bam", speciessingle=SPECIESSINGLE, genomesingle=, samplenamesingle=SINGLESAMPLES),!!
-    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.final.out",
-    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.out",
-    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.progress.out",
-    #expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-SJ.out.tab"
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Aligned.sortedByCoord.out.bam", samplenamesingle=SINGLESAMPLES),
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.final.out", samplenamesingle=SINGLESAMPLES),
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.out", samplenamesingle=SINGLESAMPLES),
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.progress.out", samplenamesingle=SINGLESAMPLES),
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-SJ.out.tab", samplenamesingle=SINGLESAMPLES)
 
 
 include: "external_rules/downloadFiles/downloadFasta.smk"
@@ -165,4 +164,4 @@ include: "external_rules/TSS/ensemblTSS_unique.smk"
 include: "external_rules/whiteLists/whiteLists.smk"
 include: "external_rules/downloadFiles/testDatasets.smk"
 include: "external_rules/star/indexStar.smk"
-#include: "external_rules/star/alignStar.smk"
+include: "external_rules/star/alignStar.smk"
