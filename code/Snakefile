@@ -89,7 +89,7 @@ def fq_and_index_single():
     technique = samples_single_indexedPD.loc[sampleName, "library_strategy"]
     genomes = config["genomes"][speciessingle]
     for genome in genomes:
-      results.append([speciessingle, sampleName, genome, config["prefixes"][genome], config["prefixesExtended"][genome], technique])
+      results.append(speciessingle, sampleName, genome, config["prefixes"][genome], config["prefixesExtended"][genome], technique)
   return results
 
 
@@ -148,7 +148,7 @@ df_bowtie_single = df_for_alignment[index_others]
 index_rnaseq = df_for_alignment['technique'] == 'RNASeq'
 df_star_single = df_for_alignment[index_rnaseq]
 
-SPECIESSINGLESTAR = df_star_single['speciessingle'].tolist(), 
+SPECIESSINGLESTAR = df_star_single['speciessingle'].tolist()
 GENOMESINGLESTAR = df_star_single['genome'].tolist()
 PREFIXSINGLESTAR = df_star_single['prefixes'].tolist()
 PREFIXEXTSINGLESTAR = df_star_single['prefixesExtended'].tolist()
