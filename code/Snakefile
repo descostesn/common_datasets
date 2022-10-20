@@ -89,7 +89,7 @@ def fq_and_index_single():
     technique = samples_single_indexedPD.loc[sampleName, "library_strategy"]
     genomes = config["genomes"][speciessingle]
     for genome in genomes:
-      results.append(speciessingle, sampleName, genome, config["prefixes"][genome], config["prefixesExtended"][genome], technique)
+      results.append([speciessingle, sampleName, genome, config["prefixes"][genome], config["prefixesExtended"][genome], technique])
   return results
 
 
