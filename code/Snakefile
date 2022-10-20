@@ -79,6 +79,21 @@ else:
 
 
 ###############################################################################
+# Functions
+###############################################################################
+
+def fq_and_index_single():
+  results = []
+  for sampleName in SINGLESAMPLES:
+    speciessingle = samples_single_indexedPD.loc[sampleName, "organism"]
+    technique = samples_single_indexedPD.loc[sampleName, "library_strategy"]
+    genomes = config["genomes"][speciessingle]
+    for genome in genomes:
+      results.append([speciessingle, sampleName, genome, config["prefixes"][genome], config["prefixesExtended"][genome], technique])
+  return results
+
+
+###############################################################################
 # Variables definition
 ###############################################################################
 
@@ -122,6 +137,25 @@ SPECIESPAIRED = df_paired['organism'].tolist()
 LAYOUTSINGLE = df_single['library_layout'].tolist()
 LAYOUTPAIRED = df_paired['library_layout'].tolist()
 
+## Table of information for alignment
+results_for_alignment = fq_and_index_single()
+df_for_alignment = pd.DataFrame(results_for_alignment)
+df_for_alignment.rename(columns={0: 'speciessingle', 1: 'sampleName', 2: 'genome', 3: 'prefixes', 4: 'prefixesExtended', 5: 'technique'}, inplace=True)
+index_others = df_for_alignment['technique'] != 'RNASeq'
+df_bowtie_single = df_for_alignment[index_others]
+
+## Preparing variables for RNASeq alignment with star for single-end
+index_rnaseq = df_for_alignment['technique'] == 'RNASeq'
+df_star_single = df_for_alignment[index_rnaseq]
+
+SPECIESSINGLESTAR = df_star_single['speciessingle'].tolist(), 
+GENOMESINGLESTAR = df_star_single['genome'].tolist()
+PREFIXSINGLESTAR = df_star_single['prefixes'].tolist()
+PREFIXEXTSINGLESTAR = df_star_single['prefixesExtended'].tolist()
+SAMPLENAMESSINGLESTAR = df_star_single['sampleName'].tolist()
+
+
+
 
 ############
 # Rule all
@@ -147,11 +181,11 @@ rule all:
     expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_1.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
     expand("../{speciespaired}/fastq/{techniquepaired}/{layoutpaired}/allchrom/{samplenamepaired}_2.fastq.gz", zip, speciespaired=SPECIESPAIRED, techniquepaired=PAIREDTECH, layoutpaired=LAYOUTPAIRED, samplenamepaired=PAIREDSAMPLES),
     expand("../{species}/{genome}/STAR_index/{prefix}-{prefixExt}", zip, species=SPECIES, genome=GENOMEID, prefix=PREFIXES, prefixExt=PREFIXESEXT),
-    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Aligned.sortedByCoord.out.bam", samplenamesingle=SINGLESAMPLES),
-    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.final.out", samplenamesingle=SINGLESAMPLES),
-    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.out", samplenamesingle=SINGLESAMPLES),
-    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.progress.out", samplenamesingle=SINGLESAMPLES),
-    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-SJ.out.tab", samplenamesingle=SINGLESAMPLES)
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Aligned.sortedByCoord.out.bam", speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR),
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.final.out", speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR),
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.out", speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR),
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.progress.out", speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR),
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-SJ.out.tab", speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR)
 
 
 include: "external_rules/downloadFiles/downloadFasta.smk"
