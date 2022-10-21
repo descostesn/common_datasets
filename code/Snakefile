@@ -80,7 +80,7 @@ def fq_and_index_single():
 
 def fq_and_index_paired():
   results = []
-  for sampleName in PAIREDAMPLES:
+  for sampleName in PAIREDSAMPLES:
     speciespaired = samples_paired_indexedPD.loc[sampleName, "organism"]
     technique = samples_paired_indexedPD.loc[sampleName, "library_strategy"]
     genomes = config["genomes"][speciespaired]
@@ -103,16 +103,26 @@ include: "external_code/variables_single_paired.smk"
 ## Table of information for alignment
 
 # Single
-results_for_alignment = fq_and_index_single()
-df_for_alignment = pd.DataFrame(results_for_alignment)
-df_for_alignment.rename(columns={0: 'speciessingle', 1: 'sampleName', 2: 'genome', 3: 'prefixes', 4: 'prefixesExtended', 5: 'technique'}, inplace=True)
-index_others = df_for_alignment['technique'] != 'RNASeq'
-index_rnaseq = df_for_alignment['technique'] == 'RNASeq'
-df_bowtie_single = df_for_alignment[index_others]
+results_for_alignment_single = fq_and_index_single()
+df_for_alignment_single = pd.DataFrame(results_for_alignment_single)
+df_for_alignment_single.rename(columns={0: 'speciessingle', 1: 'sampleName', 2: 'genome', 3: 'prefixes', 4: 'prefixesExtended', 5: 'technique'}, inplace=True)
+index_others = df_for_alignment_single['technique'] != 'RNASeq'
+index_rnaseq = df_for_alignment_single['technique'] == 'RNASeq'
+df_bowtie_single = df_for_alignment_single[index_others]
+
+# Paired
+results_for_alignment_paired = fq_and_index_paired()
+df_for_alignment_paired = pd.DataFrame(results_for_alignment_paired)
+df_for_alignment_paired.rename(columns={0: 'speciessingle', 1: 'sampleName', 2: 'genome', 3: 'prefixes', 4: 'prefixesExtended', 5: 'technique'}, inplace=True)
+index_others = df_for_alignment_paired['technique'] != 'RNASeq'
+index_rnaseq = df_for_alignment_paired['technique'] == 'RNASeq'
+df_bowtie_single = df_for_alignment_paired[index_others]
+
+
 
 ## Preparing variables for RNASeq alignment with star for single-end
 
-df_star_single = df_for_alignment[index_rnaseq]
+df_star_single = df_for_alignment_single[index_rnaseq]
 
 SPECIESSINGLESTAR = df_star_single['speciessingle'].tolist()
 GENOMESINGLESTAR = df_star_single['genome'].tolist()
@@ -123,7 +133,7 @@ SAMPLENAMESSINGLESTAR = df_star_single['sampleName'].tolist()
 
 ## Preparing variables for RNASeq alignment with star for single-end
 
-df_star_paired = df_for_alignment[index_rnaseq]
+df_star_paired = df_for_alignment_paired[index_rnaseq]
 
 SPECIESSINGLESTAR = df_star_single['speciessingle'].tolist()
 GENOMESINGLESTAR = df_star_single['genome'].tolist()
