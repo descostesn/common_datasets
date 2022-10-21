@@ -43,6 +43,7 @@ for tech in config["testDatasets"]["technique"]:
 df = pd.DataFrame(samplesData)
 df.rename(columns={0: 'samples', 1: 'library_strategy', 2: 'organism', 3: 'library_layout', 4: 'link1', 5: 'link2'}, inplace=True)
 
+
 ###############################################################################
 # checking content
 ###############################################################################
@@ -92,16 +93,8 @@ def fq_and_index_paired():
 # Variables definition
 ###############################################################################
 
-GENOMEID=config["genomeList"]
-GENOMEBIOMART=config["genomeBiomart"]
-
-PREFIXES=[]
-PREFIXESEXT=[]
-SPECIES=[]
-for genome in GENOMEID:
-  PREFIXES.append(config["prefixes"][genome])
-  SPECIES.append(config["species"][genome])
-  PREFIXESEXT.append(config["prefixesExtended"][genome])
+# Retrieving genomes and prefixes from config file
+include: "external_code/genomeandprefixes.smk"
 
 # Splitting the table into single or paired end experiments
 
