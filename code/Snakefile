@@ -21,23 +21,7 @@ containerized: "docker://emblromebioinfo/common_datasets:v0.0.1-alpha"
 # on Start
 ###############################################################################
 
-onstart:
-    print("##### REFERENCE DATASETS #####\n") 
-    print("\t Creating jobs output subfolders...\n")
-    shell("mkdir -p jobs/download_genome")
-    shell("mkdir -p jobs/download_gtf")
-    shell("mkdir -p jobs/download_gff")
-    shell("mkdir -p jobs/build_bowtie_index")
-    shell("mkdir -p jobs/downloadChromInfo")
-    shell("mkdir -p jobs/download_blacklists")
-    shell("mkdir -p jobs/sort_format_blacklist")
-    shell("mkdir -p jobs/unique_tss")
-    shell("mkdir -p jobs/create_whiteLists")
-    shell("mkdir -p jobs/download_fastq_single")
-    shell("mkdir -p jobs/download_fastq_paired")
-    shell("mkdir -p jobs/build_star_index")
-    shell("mkdir -p jobs/alignstar_single")
-
+include: "external_code/onstart.smk"
 
 ###############################################################################
 # Reading input table
@@ -93,6 +77,17 @@ def fq_and_index_single():
   return results
 
 
+def fq_and_index_paired():
+  results = []
+  for sampleName in PAIREDAMPLES:
+    speciespaired = samples_paired_indexedPD.loc[sampleName, "organism"]
+    technique = samples_paired_indexedPD.loc[sampleName, "library_strategy"]
+    genomes = config["genomes"][speciespaired]
+    for genome in genomes:
+      results.append([speciespaired, sampleName, genome, config["prefixes"][genome], config["prefixesExtended"][genome], technique])
+  return results
+
+
 ###############################################################################
 # Variables definition
 ###############################################################################
@@ -142,15 +137,16 @@ LAYOUTPAIRED = df_paired['library_layout'].tolist()
 
 ## Table of information for alignment
 
+# Single
 results_for_alignment = fq_and_index_single()
 df_for_alignment = pd.DataFrame(results_for_alignment)
 df_for_alignment.rename(columns={0: 'speciessingle', 1: 'sampleName', 2: 'genome', 3: 'prefixes', 4: 'prefixesExtended', 5: 'technique'}, inplace=True)
 index_others = df_for_alignment['technique'] != 'RNASeq'
+index_rnaseq = df_for_alignment['technique'] == 'RNASeq'
 df_bowtie_single = df_for_alignment[index_others]
 
 ## Preparing variables for RNASeq alignment with star for single-end
 
-index_rnaseq = df_for_alignment['technique'] == 'RNASeq'
 df_star_single = df_for_alignment[index_rnaseq]
 
 SPECIESSINGLESTAR = df_star_single['speciessingle'].tolist()
@@ -160,6 +156,15 @@ PREFIXEXTSINGLESTAR = df_star_single['prefixesExtended'].tolist()
 SAMPLENAMESSINGLESTAR = df_star_single['sampleName'].tolist()
 
 
+## Preparing variables for RNASeq alignment with star for single-end
+
+df_star_paired = df_for_alignment[index_rnaseq]
+
+SPECIESSINGLESTAR = df_star_single['speciessingle'].tolist()
+GENOMESINGLESTAR = df_star_single['genome'].tolist()
+PREFIXSINGLESTAR = df_star_single['prefixes'].tolist()
+PREFIXEXTSINGLESTAR = df_star_single['prefixesExtended'].tolist()
+SAMPLENAMESSINGLESTAR = df_star_single['sampleName'].tolist()
 
 
 ############
@@ -190,7 +195,15 @@ rule all:
     expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.final.out", zip, speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR),
     expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.out", zip, speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR),
     expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-Log.progress.out", zip, speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR),
-    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-SJ.out.tab", zip, speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR)
+    expand("../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-SJ.out.tab", zip, speciessingle = SPECIESSINGLESTAR, genomesingle = GENOMESINGLESTAR, prefixsingle = PREFIXSINGLESTAR, prefixExtsingle = PREFIXEXTSINGLESTAR, samplenamesingle = SAMPLENAMESSINGLESTAR),
+    
+    !!
+    bam = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-Aligned.sortedByCoord.out.bam",
+    logSTAR = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-Log.final.out",
+    log = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-{label}-Log.out",
+    progress = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-Log.progress.out",
+    SJ = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-SJ.out.tab"
+    !!
 
 
 include: "external_rules/downloadFiles/downloadFasta.smk"
