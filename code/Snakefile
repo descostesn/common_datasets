@@ -101,10 +101,8 @@ include: "external_code/genomeandprefixes.smk"
 include: "external_code/variables_single_paired.smk"
 
 ## Table of information for alignment
-alignment_variables(fq_and_index_single)
-
 def extract_info_df(df):
-  return (df['speciessingle'].tolist(), df['genome'].tolist(), df['genome'].tolist(), df['prefixes'].tolist(), df['prefixesExtended'].tolist(), df['sampleName'].tolist())
+  return (df['speciessingle'].tolist(), df['genome'].tolist(), df['prefixes'].tolist(), df['prefixesExtended'].tolist(), df['sampleName'].tolist())
 
 def alignment_variables(fun):
   results = fun()
@@ -125,20 +123,14 @@ def alignment_variables(fun):
           "bowtie": [SPECIESBOW, GENOMEBOW, PREFIXBOW, PREFIXEXTBOW, SAMPLENAMESBOW]}
 
 
-results_for_alignment_single = fq_and_index_single()
-df_for_alignment_single = pd.DataFrame(results_for_alignment_single)
-df_for_alignment_single.rename(columns={0: 'speciessingle', 1: 'sampleName', 2: 'genome', 3: 'prefixes', 4: 'prefixesExtended', 5: 'technique'}, inplace=True)
-index_others = df_for_alignment_single['technique'] != 'RNASeq'
-index_rnaseq = df_for_alignment_single['technique'] == 'RNASeq'
-df_bowtie_single = df_for_alignment_single[index_others]
-df_star_single = df_for_alignment_single[index_rnaseq]
+results_for_alignments_single = alignment_variables(fq_and_index_single)
 
 ## Preparing variables for RNASeq alignment with star for single-end
-SPECIESSINGLESTAR = df_star_single['speciessingle'].tolist()
-GENOMESINGLESTAR = df_star_single['genome'].tolist()
-PREFIXSINGLESTAR = df_star_single['prefixes'].tolist()
-PREFIXEXTSINGLESTAR = df_star_single['prefixesExtended'].tolist()
-SAMPLENAMESSINGLESTAR = df_star_single['sampleName'].tolist()
+SPECIESSINGLESTAR = results_for_alignments_single['star'][0]
+GENOMESINGLESTAR = results_for_alignments_single['star'][1]
+PREFIXSINGLESTAR = results_for_alignments_single['star'][2]
+PREFIXEXTSINGLESTAR = results_for_alignments_single['star'][3]
+SAMPLENAMESSINGLESTAR = results_for_alignments_single['star'][4]
 
 
 
