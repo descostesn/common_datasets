@@ -126,18 +126,22 @@ samples_single_indexedPD = pd.DataFrame(df_single).set_index("samples",drop=Fals
 samples_paired_indexedPD = pd.DataFrame(df_paired).set_index("samples",drop=False)
 
 # Technique names
+
 SINGLETECH = df_single['library_strategy'].tolist()
 PAIREDTECH = df_paired['library_strategy'].tolist()
 
 ## Species name
+
 SPECIESSINGLE = df_single['organism'].tolist()
 SPECIESPAIRED = df_paired['organism'].tolist()
 
 ## Layout names
+
 LAYOUTSINGLE = df_single['library_layout'].tolist()
 LAYOUTPAIRED = df_paired['library_layout'].tolist()
 
 ## Table of information for alignment
+
 results_for_alignment = fq_and_index_single()
 df_for_alignment = pd.DataFrame(results_for_alignment)
 df_for_alignment.rename(columns={0: 'speciessingle', 1: 'sampleName', 2: 'genome', 3: 'prefixes', 4: 'prefixesExtended', 5: 'technique'}, inplace=True)
@@ -145,6 +149,7 @@ index_others = df_for_alignment['technique'] != 'RNASeq'
 df_bowtie_single = df_for_alignment[index_others]
 
 ## Preparing variables for RNASeq alignment with star for single-end
+
 index_rnaseq = df_for_alignment['technique'] == 'RNASeq'
 df_star_single = df_for_alignment[index_rnaseq]
 
