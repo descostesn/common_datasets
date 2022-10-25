@@ -59,9 +59,9 @@ rule alignstar_paired:
   output:
     bam = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-Aligned.sortedByCoord.out.bam",
     logSTAR = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-Log.final.out",
-    log = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-{label}-Log.out",
-    #progress = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-Log.progress.out",
-    #SJ = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-SJ.out.tab"
+    log = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-Log.out",
+    progress = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-Log.progress.out",
+    SJ = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-SJ.out.tab"
   conda: "../../conda/star.yaml"
   threads: 12
   wildcard_constraints:
