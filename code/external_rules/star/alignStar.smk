@@ -65,7 +65,7 @@ rule alignstar_paired:
   conda: "../../conda/star.yaml"
   threads: 12
   wildcard_constraints:
-    samplenamesingle="[0-9A-Za-z]+"
+    samplenamepaired="[0-9A-Za-z]+"
   shell:
     """
     OUTFOLD=`dirname {output.bam}`
