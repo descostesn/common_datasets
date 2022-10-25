@@ -52,7 +52,7 @@ rule alignstar_single:
 rule alignstar_paired:
   input:
     fq1 = "../{speciespaired}/fastq/RNASeq/paired/allchrom/{samplenamepaired}_1.fastq.gz",
-    fq2 = "../{speciespaired}/fastq/RNASeq/paired/allchrom/{samplenamepaired}_2.fastq.gz"
+    fq2 = "../{speciespaired}/fastq/RNASeq/paired/allchrom/{samplenamepaired}_2.fastq.gz",
     index="../{speciespaired}/{genomepaired}/STAR_index/{prefixpaired}-{prefixExtpaired}"
   output:
     bam = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-Aligned.sortedByCoord.out.bam",
