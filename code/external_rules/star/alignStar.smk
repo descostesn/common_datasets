@@ -10,6 +10,8 @@ rule alignstar_single:
     SJ = "../{speciessingle}/{genomesingle}/STAR/{prefixsingle}-{prefixExtsingle}/{samplenamesingle}-SJ.out.tab"
   conda: "../../conda/star.yaml"
   threads: 12
+  wildcard_constraints:
+    samplenamesingle="[0-9A-Za-z]+"
   shell:
     """
     OUTFOLD=`dirname {output.bam}`
@@ -62,6 +64,8 @@ rule alignstar_paired:
     #SJ = "../{speciespaired}/{genomepaired}/STAR/{prefixpaired}-{prefixExtpaired}/{samplenamepaired}-SJ.out.tab"
   conda: "../../conda/star.yaml"
   threads: 12
+  wildcard_constraints:
+    samplenamesingle="[0-9A-Za-z]+"
   shell:
     """
     OUTFOLD=`dirname {output.bam}`
